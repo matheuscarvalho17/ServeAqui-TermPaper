@@ -1,11 +1,11 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-export default function App() {
+export default function Catalog() {
 	return (
 		<>
 			<View>
-				<Text>Hello, World</Text>
+				<Text>Catálogo</Text>
 			</View>
 		</>
 	);
