@@ -3,6 +3,7 @@ import Menu from '../pages/Main';
 import Catalog from '../pages/Catalog';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import StackHeader from './util/StackHeader';
 
 const Stack = createStackNavigator();
 
@@ -11,10 +12,20 @@ const AppRoute: React.FC = () => {
 		<NavigationContainer>
 			<Stack.Navigator
 				screenOptions={{
-					headerShown: false,
+					header: ({scene, navigation}) => (
+						<StackHeader scene={scene} navigation={navigation} />
+					),
 				}}>
-				<Stack.Screen name="Menu" component={Menu} />
-				<Stack.Screen name="Catalog" component={Catalog} />
+				<Stack.Screen
+					name="Menu"
+					component={Menu}
+					options={{headerTitle: 'Menu'}}
+				/>
+				<Stack.Screen
+					name="Catalog"
+					component={Catalog}
+					options={{headerTitle: 'Catálogo'}}
+				/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);
