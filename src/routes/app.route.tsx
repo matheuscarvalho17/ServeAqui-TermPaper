@@ -1,5 +1,5 @@
 import React from 'react';
-import Main from '../pages/Main';
+import Main from '../pages/Cart';
 import Catalog from '../pages/Catalog';
 import StackHeader from '../util/stackHeader';
 import {NavigationContainer} from '@react-navigation/native';
@@ -22,9 +22,9 @@ const AppRoute: React.FC = () => {
 					options={{headerTitle: 'Catálogo'}}
 				/>
 				<Stack.Screen
-					name="Main"
+					name="Cart"
 					component={Main}
-					options={{headerTitle: 'Menu'}}
+					options={{headerTitle: 'Carrinho'}}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>

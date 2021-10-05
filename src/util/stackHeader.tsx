@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
+import colors from '../customs/colors';
 import {StyleSheet} from 'react-native';
 import {Appbar} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {setFontSizeValue, setHeightValue} from './ajustScreen';
 
 const StackHeader = ({scene, navigation}) => {
@@ -38,8 +38,10 @@ const styles = StyleSheet.create({
 	header: {
 		marginHorizontal: '2%',
 		height: setHeightValue(15),
+		backgroundColor: colors.primary,
 	},
 	title: {
+		color: 'white',
 		fontSize: setFontSizeValue(5),
 	},
 });

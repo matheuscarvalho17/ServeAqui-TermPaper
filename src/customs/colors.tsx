@@ -1,8 +1,10 @@
 const colors = {
-	primary: '#ffaa00',
-	secondary: '#1C1F3C',
+	primary: '#FF8C00',
+	secondary: '#FF4500',
 	tertiary: '#E8DA00',
-	background_initial: '#dfdfdf',
+	text_light: '#F3F9FF',
+	text_dark: '#4E2A00',
+	background_initial: '#DFDFDF',
 };
 
 export default colors;
