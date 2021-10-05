@@ -11,10 +11,14 @@ const StackHeader = ({scene, navigation}) => {
 	return (
 		<Appbar.Header style={styles.header}>
 			{navigation.canGoBack() ? (
-				<Appbar.BackAction onPress={() => navigation.pop()} />
+				<Appbar.BackAction
+					onPress={() => navigation.pop()}
+					color={colors.text_light}
+				/>
 			) : (
 				<Appbar.Action
 					icon="information-outline"
+					color={colors.text_light}
 					size={setFontSizeValue(6)}
 					onPress={() => console.log('Notification pressed1')}
 				/>
@@ -22,11 +26,13 @@ const StackHeader = ({scene, navigation}) => {
 			<Appbar.Content title={title} titleStyle={styles.title} />
 			<Appbar.Action
 				icon="magnify"
+				color={colors.text_light}
 				size={setFontSizeValue(6)}
 				onPress={() => console.log('Notification pressed2')}
 			/>
 			<Appbar.Action
 				icon="dots-vertical"
+				color={colors.text_light}
 				size={setFontSizeValue(6)}
 				onPress={() => console.log('Notification pressed3')}
 			/>

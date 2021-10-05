@@ -1,25 +1,21 @@
 import styled from 'styled-components';
 import colors from '../../customs/colors';
+import {
+	setHeightValue,
+	setWidthValue,
+	setFontSizeValue,
+} from '../../util/ajustScreen';
 
 export const Container = styled.View`
 	bottom: 0;
-	position: absolute;
 	padding: 0px 22px;
-	border-radius: 10px;
+	position: absolute;
 	align-items: center;
 	flex-direction: row;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	justify-content: space-between;
 	background: ${colors.secondary};
-`;
-
-export const CartPricing = styled.Text`
-	padding: 1px;
-`;
-
-export const CartTotalPrice = styled.Text`
-	font-size: 16px;
-	font-weight: bold;
-	color: ${colors.text_light};
 `;
 
 export const CartButton = styled.TouchableOpacity`
@@ -30,10 +26,16 @@ export const CartButton = styled.TouchableOpacity`
 	justify-content: space-between;
 `;
 
+export const CartTotalPrice = styled.Text`
+	font-weight: bold;
+	color: ${colors.text_light};
+	font-size: ${setFontSizeValue(4)}px;
+`;
+
 export const CartButtonText = styled.Text`
-	flex: 1;
 	font-weight: bold;
 	margin-left: 15px;
 	margin-right: auto;
 	color: ${colors.text_light};
+	font-size: ${setFontSizeValue(4)}px;
 `;
