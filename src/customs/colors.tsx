@@ -8,7 +8,7 @@ const colors = {
 	text_light: '#F3F9FF',
 	text_dark: '#4E2A00',
 	//backgrounds
-	background_initial: '#DFDFDF',
+	background_initial: '#EEEEEE',
 };
 
 export default colors;

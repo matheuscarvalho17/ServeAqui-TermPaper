@@ -1,7 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
 import colors from '../../customs/colors';
-import FloatingCart from '../../components/FloatingCart';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import {setFontSizeValue, setWidthValue} from '../../util/ajustScreen';
 import {

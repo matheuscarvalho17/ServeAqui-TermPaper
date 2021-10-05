@@ -16,6 +16,9 @@ export const Container = styled.SafeAreaView`
 export const ProductContainer = styled.View`
 	background: white;
 	border-radius: 15px;
+	border-radius: 25px;
+	border-width: 0.5px;
+	border-color: #cccccc;
 	width: ${setWidthValue(170)}px;
 	height: ${setHeightValue(75)}px;
 	margin-top: ${setHeightValue(3)}px;

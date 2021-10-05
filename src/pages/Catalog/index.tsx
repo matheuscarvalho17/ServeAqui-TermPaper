@@ -1,8 +1,9 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import FloatingCart from '../../components/FloatingCart';
+import MessageFrame from '../../components/MessageFrame';
 import ProductsFrame from '../../components/ProductsFrame';
-import {Container, FlatListContainer, MessageContainer} from './styled';
+import {Container, FlatListContainer} from './styled';
 
 export default function Catalog() {
 	const navigation = useNavigation();
@@ -98,7 +99,9 @@ export default function Catalog() {
 					<ProductsFrame productsList={prodMeals} productsType={'Refeições'} />
 					<ProductsFrame productsList={prodDrinks} productsType={'Bebidas'} />
 					<ProductsFrame productsList={prodIced} productsType={'Gelados'} />
-					<MessageContainer />
+					<MessageFrame
+						message={'Parece que já te mostramos todas as comidinhas!'}
+					/>
 				</FlatListContainer>
 				<FloatingCart />
 			</Container>
