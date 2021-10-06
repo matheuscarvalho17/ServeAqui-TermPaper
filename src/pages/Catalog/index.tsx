@@ -95,7 +95,7 @@ export default function Catalog() {
 	return (
 		<>
 			<Container>
-				<FlatListContainer>
+				<FlatListContainer showsVerticalScrollIndicator={false}>
 					<ProductsFrame productsList={prodMeals} productsType={'Refeições'} />
 					<ProductsFrame productsList={prodDrinks} productsType={'Bebidas'} />
 					<ProductsFrame productsList={prodIced} productsType={'Gelados'} />
