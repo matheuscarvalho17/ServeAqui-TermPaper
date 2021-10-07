@@ -8,19 +8,18 @@ import {
 
 export const Container = styled.View`
 	bottom: 0;
-	padding: 0px 22px;
 	position: absolute;
 	align-items: center;
 	flex-direction: row;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
 	justify-content: space-between;
 	background: ${colors.secondary};
+	border-top-left-radius: ${setHeightValue(3)}px;
+	border-top-right-radius: ${setHeightValue(3)}px;
+	padding: ${setHeightValue(5)}px ${setWidthValue(8)}px;
 `;
 
 export const CartButton = styled.TouchableOpacity`
 	flex: 1;
-	padding: 20px 20px;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
@@ -34,8 +33,8 @@ export const CartTotalPrice = styled.Text`
 
 export const CartButtonText = styled.Text`
 	font-weight: bold;
-	margin-left: 15px;
 	margin-right: auto;
 	color: ${colors.text_light};
+	margin-left: ${setWidthValue(3)}px;
 	font-size: ${setFontSizeValue(4)}px;
 `;

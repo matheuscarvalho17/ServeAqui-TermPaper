@@ -19,7 +19,7 @@ export const ProductContainer = styled.View`
 	width: ${setWidthValue(170)}px;
 	height: ${setHeightValue(75)}px;
 	margin-top: ${setHeightValue(3)}px;
-	border-radius: ${setHeightValue(5)}px;
+	border-radius: ${setHeightValue(4)}px;
 	margin-bottom: ${setHeightValue(3)}px;
 	border-bottom-width: ${setHeightValue(0.5)}px;
 `;
@@ -53,7 +53,7 @@ export const Product = styled.TouchableOpacity`
 	border-color: ${colors.primary};
 	margin-left: ${setWidthValue(2)}px;
 	margin-right: ${setWidthValue(2)}px;
-	border-radius: ${setHeightValue(5)}px;
+	border-radius: ${setHeightValue(4)}px;
 	border-width: ${setHeightValue(0.4)}px;
 	padding: ${setHeightValue(3)}px ${setWidthValue(2)}px;
 `;

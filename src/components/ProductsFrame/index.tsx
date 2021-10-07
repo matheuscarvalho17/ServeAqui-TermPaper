@@ -21,6 +21,7 @@ interface Data {
 	price: number;
 	editable: boolean;
 	image_url: string;
+	description: string;
 }
 interface IProductsFrame {
 	productsType: string;
