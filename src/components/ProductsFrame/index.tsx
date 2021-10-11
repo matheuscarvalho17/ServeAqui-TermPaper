@@ -1,6 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import colors from '../../customs/colors';
+import formatValues from '../../util/formatValues';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import {setWidthValue, setFontSizeValue} from '../../util/ajustScreen';
 import {
@@ -17,28 +18,31 @@ import {
 
 interface Data {
 	id: number;
+	type: string;
 	title: string;
 	price: number;
-	type: string;
 	editable: boolean;
 	image_url: string;
 	description: string;
 }
 interface IProductsFrame {
+	onPressAdd: Function;
 	productsType: string;
+	onPressProduct: Function;
 	productsList: Array<Data>;
+	onPressContainer: Function;
 }
 
 const ProductsFrame: React.FC<IProductsFrame> = ({
+	onPressAdd,
 	productsType,
 	productsList,
+	onPressProduct,
+	onPressContainer,
 }) => {
 	return (
 		<ProductContainer>
-			<ProductHeader
-				onPress={() => {
-					console.log('Entrando em:', productsType);
-				}}>
+			<ProductHeader onPress={onPressContainer}>
 				<ProductHeaderTitle>{productsType}</ProductHeaderTitle>
 				<FeatherIcon
 					name="chevron-right"
@@ -57,22 +61,16 @@ const ProductsFrame: React.FC<IProductsFrame> = ({
 					height: 80,
 				}}
 				renderItem={({item}) => (
-					<Product
-						onPress={() => {
-							console.log('Verificar', item.title);
-						}}>
+					<Product onPress={onPressProduct}>
 						<ProductImage source={{uri: item.image_url}} />
-						<ProductButton
-							onPress={() => {
-								console.log('Adicionar', item.title);
-							}}>
+						<ProductButton onPress={onPressAdd}>
 							<FeatherIcon
 								name="plus-circle"
 								color={colors.text_dark}
 								size={setFontSizeValue(10)}
 							/>
 						</ProductButton>
-						<ProductPrice>R$ {item.price},00</ProductPrice>
+						<ProductPrice>{formatValues(item.price)}</ProductPrice>
 						<ProductTitle>{item.title}</ProductTitle>
 					</Product>
 				)}
@@ -81,4 +79,4 @@ const ProductsFrame: React.FC<IProductsFrame> = ({
 	);
 };
 
-export default ProductsFrame;
+export {ProductsFrame, Data};
