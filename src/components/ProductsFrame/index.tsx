@@ -19,6 +19,7 @@ interface Data {
 	id: number;
 	title: string;
 	price: number;
+	type: string;
 	editable: boolean;
 	image_url: string;
 	description: string;
