@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import colors from '../../customs/colors';
+import {setHeightValue} from '../../util/ajustScreen';
 import {ScrollView} from 'react-native-gesture-handler';
-import {
-	setWidthValue,
-	setHeightValue,
-	setFontSizeValue,
-} from '../../util/ajustScreen';
 
 export const Container = styled.SafeAreaView`
 	flex: 1;

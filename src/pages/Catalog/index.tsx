@@ -1,25 +1,18 @@
 import api from '../../services/api';
-import {useDispatch} from 'react-redux';
 import React, {useState, useEffect} from 'react';
 import {Container, FlatListContainer} from './styled';
 import FloatingCart from '../../components/FloatingCart';
 import MessageFrame from '../../components/MessageFrame';
-import * as CartActions from '../../store/modules/cart/actions';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
 
 export default function Catalog() {
 	//All constants declarations
-	const dispatch = useDispatch();
 	const [products, setProducts] = useState<Array<Data>>([]);
 
-	//All Functions
-	function handlerAddToCart(id) {
-		dispatch(CartActions.addToCartRequest(id));
-	}
-
+	//All functions
 	async function loadProducts() {
 		try {
-			const {data} = await api.get('/products');
+			const {data} = await api.get('/products/');
 			setProducts(data);
 		} catch (err) {
 			console.log(err);
@@ -37,21 +30,18 @@ export default function Catalog() {
 				<ProductsFrame
 					productsList={products}
 					productsType={'Refeições'}
-					onPressAdd={() => console.log('id')}
 					onPressProduct={() => {}}
 					onPressContainer={() => {}}
 				/>
 				{/* <ProductsFrame
 					productsList={products}
 					productsType={'Bebidas'}
-					onPressAdd={() => {}}
 					onPressProduct={() => {}}
 					onPressContainer={() => {}}
 				/>
 				<ProductsFrame
 					productsList={products}
 					productsType={'Gelados'}
-					onPressAdd={() => {}}
 					onPressProduct={() => {}}
 					onPressContainer={() => {}}
 				/> */}
