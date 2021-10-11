@@ -1,11 +1,14 @@
 import {View} from 'react-native';
 import api from '../../services/api';
 import colors from '../../customs/colors';
-import React, {useState, useEffect} from 'react';
+import React, {useState, useMemo} from 'react';
 import EmptyCart from '../../components/EmptyCart';
 import formatValues from '../../util/formatValues';
+import {Data} from '../../components/ProductsFrame';
+import {useSelector, useDispatch} from 'react-redux';
 import {setFontSizeValue} from '../../util/ajustScreen';
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import * as CartActions from '../../store/modules/cart/actions';
 import {
 	Product,
 	Container,
@@ -28,25 +31,22 @@ import {
 
 export default function Cart() {
 	//All constants declarations
-	const [products, setProducts] = useState([]);
-	const [amount, setAmount] = useState<number>(1);
-	const [cartSize, setCartSize] = useState<number>(2);
-	const [cartTotal, setCartTotal] = useState<string>('R$350.00');
+	const dispatch = useDispatch();
 
-	//All Functions
-	async function loadProducts() {
-		try {
-			const {data} = await api.get('/products');
-			setProducts(data);
-		} catch (err) {
-			console.log(err);
-		}
-	}
+	//All "functions" used by Redux
+	const products = useSelector(({cart}: {cart: any}) => cart);
 
-	//All useEffects
-	useEffect(() => {
-		loadProducts();
-	}, []);
+	const cartSize = useMemo(() => {
+		return products.length || 0;
+	}, [products]);
+
+	const cartTotal = useMemo(() => {
+		const cartAmount = products.reduce((accumulator, product) => {
+			const totalPrice = accumulator + product.price * product.amount;
+			return totalPrice;
+		}, 0);
+		return formatValues(cartAmount);
+	}, [products]);
 
 	return (
 		<Container>
@@ -70,9 +70,9 @@ export default function Cart() {
 										{formatValues(item.price)}
 									</ProductSinglePrice>
 									<TotalContainer>
-										<ProductQuantity>{`${amount}x`}</ProductQuantity>
+										<ProductQuantity>{`${item.amount}x`}</ProductQuantity>
 										<ProductPrice>
-											{formatValues(item.price * amount)}
+											{formatValues(item.price * item.amount)}
 										</ProductPrice>
 									</TotalContainer>
 								</ProductPriceContainer>
