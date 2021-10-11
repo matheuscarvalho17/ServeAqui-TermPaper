@@ -27,7 +27,7 @@ import {
 	TotalProductsContainer,
 } from './styled';
 
-export default function Cart() {
+const Cart: React.FC = () => {
 	//All constants declarations
 	const dispatch = useDispatch();
 	const products = useSelector(({cart}: {cart: any}) => cart);
@@ -117,4 +117,6 @@ export default function Cart() {
 			</TotalProductsContainer>
 		</Container>
 	);
-}
+};
+
+export default Cart;

@@ -5,7 +5,7 @@ import FloatingCart from '../../components/FloatingCart';
 import MessageFrame from '../../components/MessageFrame';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
 
-export default function Catalog() {
+const Catalog: React.FC = () => {
 	//All constants declarations
 	const [prodIceds, setProdIceds] = useState<Array<Data>>([]);
 	const [prodMeals, setProdMeals] = useState<Array<Data>>([]);
@@ -66,4 +66,6 @@ export default function Catalog() {
 			<FloatingCart />
 		</Container>
 	);
-}
+};
+
+export default Catalog;

@@ -7,16 +7,13 @@ import {setFontSizeValue} from '../../util/ajustScreen';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import {Container, CartButton, CartTotalPrice, CartButtonText} from './styled';
 
-export default function FloatingCart() {
+const FloatingCart: React.FC = () => {
 	//All constants declarations
 	const navigation = useNavigation();
 	const products = useSelector(({cart}: {cart: any}) => cart);
-
-	//All 'Functions' used by Redux
 	const cartSize = useMemo(() => {
 		return products.length || 0;
 	}, [products]);
-
 	const cartTotal = useMemo(() => {
 		const cartAmount = products.reduce((accumulator, product) => {
 			const totalPrice = accumulator + product.price * product.amount;
@@ -45,4 +42,6 @@ export default function FloatingCart() {
 			</CartButton>
 		</Container>
 	);
-}
+};
+
+export default FloatingCart;

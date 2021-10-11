@@ -1,9 +1,9 @@
 import React from 'react';
 import LottieView from 'lottie-react-native';
-import {Container, FrameContainer, Text} from './styled';
+import {Container, FrameContainer} from './styled';
 import EmptyFrame from '../../customs/animations/EmptyFrame.json';
 
-export default function EmpytFrame() {
+const EmpytFrame: React.FC = () => {
 	return (
 		<Container>
 			<FrameContainer>
@@ -11,4 +11,6 @@ export default function EmpytFrame() {
 			</FrameContainer>
 		</Container>
 	);
-}
+};
+
+export default EmpytFrame;

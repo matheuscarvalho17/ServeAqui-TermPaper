@@ -3,7 +3,7 @@ import LottieView from 'lottie-react-native';
 import EmptyCart from '../../customs/animations/EmptyCart.json';
 import {Container, CartContainer, Text} from './styled';
 
-export default function EmpytCart() {
+const EmpytCart: React.FC = () => {
 	return (
 		<Container>
 			<CartContainer>
@@ -12,4 +12,6 @@ export default function EmpytCart() {
 			<Text>Seu carrinho tá sem nada! Compra algo ai!</Text>
 		</Container>
 	);
-}
+};
+
+export default EmpytCart;
