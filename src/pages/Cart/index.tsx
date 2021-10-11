@@ -1,10 +1,8 @@
 import {View} from 'react-native';
-import api from '../../services/api';
+import React, {useMemo} from 'react';
 import colors from '../../customs/colors';
-import React, {useState, useMemo} from 'react';
 import EmptyCart from '../../components/EmptyCart';
 import formatValues from '../../util/formatValues';
-import {Data} from '../../components/ProductsFrame';
 import {useSelector, useDispatch} from 'react-redux';
 import {setFontSizeValue} from '../../util/ajustScreen';
 import FeatherIcon from 'react-native-vector-icons/Feather';
@@ -32,14 +30,10 @@ import {
 export default function Cart() {
 	//All constants declarations
 	const dispatch = useDispatch();
-
-	//All "functions" used by Redux
 	const products = useSelector(({cart}: {cart: any}) => cart);
-
 	const cartSize = useMemo(() => {
 		return products.length || 0;
 	}, [products]);
-
 	const cartTotal = useMemo(() => {
 		const cartAmount = products.reduce((accumulator, product) => {
 			const totalPrice = accumulator + product.price * product.amount;
@@ -47,6 +41,17 @@ export default function Cart() {
 		}, 0);
 		return formatValues(cartAmount);
 	}, [products]);
+
+	//All functions
+	function removeFromCart(id: number) {
+		dispatch(CartActions.removeFromCart(id));
+	}
+	function increment(product: any) {
+		dispatch(CartActions.updateAmountRequest(product.id, product.amount + 1));
+	}
+	function decrement(product: any) {
+		dispatch(CartActions.updateAmountRequest(product.id, product.amount - 1));
+	}
 
 	return (
 		<Container>
@@ -56,7 +61,6 @@ export default function Cart() {
 					data={products}
 					keyExtractor={item => item.id}
 					ListEmptyComponent={<EmptyCart />}
-					ListFooterComponent={<View />}
 					ListFooterComponentStyle={{
 						height: 80,
 					}}
@@ -80,15 +84,13 @@ export default function Cart() {
 							<ActionContainer>
 								<ActionButton
 									onPress={() => {
-										console.log('increment(item)');
+										increment(item);
 									}}>
 									<FeatherIcon name="plus" color={colors.secondary} size={16} />
 								</ActionButton>
 								<ActionButton
 									onPress={() =>
-										item.amount > 1
-											? console.log('decrement(item)')
-											: console.log('removeFromCart(item.id)')
+										item.amount > 1 ? decrement(item) : removeFromCart(item.id)
 									}>
 									<FeatherIcon
 										name="minus"

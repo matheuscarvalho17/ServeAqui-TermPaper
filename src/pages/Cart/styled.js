@@ -1,6 +1,6 @@
+import {FlatList} from 'react-native';
 import styled from 'styled-components';
 import colors from '../../customs/colors';
-import {FlatList, ScrollView} from 'react-native';
 import {
 	setWidthValue,
 	setHeightValue,

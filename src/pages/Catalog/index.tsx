@@ -7,15 +7,29 @@ import {ProductsFrame, Data} from '../../components/ProductsFrame';
 
 export default function Catalog() {
 	//All constants declarations
-	const [products, setProducts] = useState<Array<Data>>([]);
+	const [prodIceds, setProdIceds] = useState<Array<Data>>([]);
+	const [prodMeals, setProdMeals] = useState<Array<Data>>([]);
+	const [prodDrinks, setProdDrinks] = useState<Array<Data>>([]);
 
 	//All functions
 	async function loadProducts() {
 		try {
-			const {data} = await api.get('/products/');
-			setProducts(data);
+			const responseIceds = await api.get('/products?type=iced');
+			setProdIceds(responseIceds.data);
 		} catch (err) {
-			console.log(err);
+			console.log('responseIceds', err);
+		}
+		try {
+			const responseMeals = await api.get('/products?type=food');
+			setProdMeals(responseMeals.data);
+		} catch (err) {
+			console.log('responseMeals', err);
+		}
+		try {
+			const responseDrinks = await api.get('/products?type=drink');
+			setProdDrinks(responseDrinks.data);
+		} catch (err) {
+			console.log('responseDrinks', err);
 		}
 	}
 
@@ -28,23 +42,23 @@ export default function Catalog() {
 		<Container>
 			<FlatListContainer showsVerticalScrollIndicator={false}>
 				<ProductsFrame
-					productsList={products}
+					productsList={prodMeals}
 					productsType={'Refeições'}
 					onPressProduct={() => {}}
 					onPressContainer={() => {}}
 				/>
-				{/* <ProductsFrame
-					productsList={products}
+				<ProductsFrame
+					productsList={prodDrinks}
 					productsType={'Bebidas'}
 					onPressProduct={() => {}}
 					onPressContainer={() => {}}
 				/>
 				<ProductsFrame
-					productsList={products}
+					productsList={prodIceds}
 					productsType={'Gelados'}
 					onPressProduct={() => {}}
 					onPressContainer={() => {}}
-				/> */}
+				/>
 				<MessageFrame
 					message={'Parece que já te mostramos todas as comidinhas!'}
 				/>

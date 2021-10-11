@@ -1,23 +1,26 @@
 import styled from 'styled-components';
 import colors from '../../customs/colors';
-import {setWidthValue, setHeightValue} from '../../util/ajustScreen';
+import {
+	setWidthValue,
+	setHeightValue,
+	setFontSizeValue,
+} from '../../util/ajustScreen';
 
 export const Container = styled.View`
-	height: 100%;
 	align-items: center;
 	justify-content: center;
 `;
 
-export const EmptyCartContainer = styled.View`
+export const CartContainer = styled.View`
 	width: ${setWidthValue(60)}px;
 	height: ${setHeightValue(60)}px;
+	margin-top: ${setHeightValue(15)}px;
 `;
 
-export const EmptyCartText = styled.Text`
-	font-size: 30px;
-	margin-top: 28px;
-	line-height: 40px;
+export const Text = styled.Text`
 	text-align: center;
-	letter-spacing: 3px;
-	color: ${colors.text_dark};
+	color: ${colors.text_light};
+	font-size: ${setFontSizeValue(6)}px;
+	margin-top: ${setHeightValue(15)}px;
+	letter-spacing: ${setWidthValue(1)}px;
 `;

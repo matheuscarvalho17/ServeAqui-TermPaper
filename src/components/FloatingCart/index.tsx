@@ -12,12 +12,11 @@ export default function FloatingCart() {
 	const navigation = useNavigation();
 	const products = useSelector(({cart}: {cart: any}) => cart);
 
-	//Quantidade de itens no carrinho
+	//All 'Functions' used by Redux
 	const cartSize = useMemo(() => {
 		return products.length || 0;
 	}, [products]);
 
-	//Quantidade total do preço do carrinho
 	const cartTotal = useMemo(() => {
 		const cartAmount = products.reduce((accumulator, product) => {
 			const totalPrice = accumulator + product.price * product.amount;

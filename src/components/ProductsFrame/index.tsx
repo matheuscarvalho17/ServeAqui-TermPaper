@@ -1,5 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
+import EmptyFrame from '../EmptyFrame';
 import {useDispatch} from 'react-redux';
 import colors from '../../customs/colors';
 import formatValues from '../../util/formatValues';
@@ -63,7 +64,7 @@ const ProductsFrame: React.FC<IProductsFrame> = ({
 				horizontal={true}
 				data={productsList}
 				keyExtractor={item => item.id}
-				ListFooterComponent={<View />}
+				ListEmptyComponent={<EmptyFrame />}
 				showsHorizontalScrollIndicator={false}
 				ListFooterComponentStyle={{
 					height: 80,
