@@ -1,19 +1,17 @@
 import api from '../../services/api';
 import React, {useEffect, useState} from 'react';
 import {useRoute} from '@react-navigation/native';
+import formatValues from '../../util/formatValues';
 import {Data} from '../../components/ProductsFrame';
+import EmptyFrame from '../../components/EmptyFrame';
 import FloatingCart from '../../components/FloatingCart';
-import MessageFrame from '../../components/MessageFrame';
 import {
 	Container,
-	ScrollContainer,
-	Product,
 	ProductImage,
 	ProductTitle,
 	ProductPrice,
-	ProductButton,
-	Header,
 	Informations,
+	ProductHeader,
 	ProductDescription,
 } from './styled';
 
@@ -22,13 +20,6 @@ const ProductDetails: React.FC = () => {
 	const route = useRoute();
 	const idProduct = route.params;
 	const [product, setProduct] = useState<Array<Data>>([]);
-
-	const price: string = 'R$20.00';
-	const title: string = 'Bife suíno com salada';
-	const description: string =
-		'Bife suíno com salada de batata, tomate e alface';
-	const image_url: string =
-		'https://s1.1zoom.me/big0/233/Meat_products_Potato_Vegetables_White_background_535614_1280x853.jpg ';
 
 	//All functions
 	async function loadProduct() {
@@ -47,17 +38,24 @@ const ProductDetails: React.FC = () => {
 
 	return (
 		<Container>
-			<ScrollContainer showsVerticalScrollIndicator={false}>
-				<Header>
-					<ProductImage source={{uri: image_url}} />
-					<Informations>
-						<ProductTitle>{title}</ProductTitle>
-						<ProductDescription>{description}</ProductDescription>
-						<ProductPrice>{price}</ProductPrice>
-					</Informations>
-				</Header>
-				{/* <MessageFrame message={`Imagem id ${idProduct}`} /> */}
-			</ScrollContainer>
+			<ProductHeader
+				data={product}
+				keyExtractor={item => item.id}
+				ListEmptyComponent={<EmptyFrame />}
+				ListFooterComponentStyle={{
+					height: 80,
+				}}
+				renderItem={({item}) => (
+					<>
+						<ProductImage source={{uri: item.image_url}} />
+						<Informations>
+							<ProductTitle>{item.title}</ProductTitle>
+							<ProductDescription>{item.description}</ProductDescription>
+							<ProductPrice>{formatValues(item.price)}</ProductPrice>
+						</Informations>
+					</>
+				)}
+			/>
 			<FloatingCart />
 		</Container>
 	);

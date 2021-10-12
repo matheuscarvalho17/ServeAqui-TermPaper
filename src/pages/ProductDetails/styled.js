@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import colors from '../../customs/colors';
-import {ScrollView} from 'react-native-gesture-handler';
+import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import {
 	setWidthValue,
 	setHeightValue,
@@ -8,18 +8,16 @@ import {
 } from '../../util/ajustScreen';
 
 export const Container = styled.SafeAreaView`
+	flex: 1;
 	align-items: center;
 	background: ${colors.background_initial};
 `;
 
-export const ScrollContainer = styled(ScrollView).attrs({})`
+export const ProductHeader = styled(FlatList).attrs({})`
 	width: 100%;
-	height: 100%;
 `;
-
 export const Header = styled.View`
 	width: 100%;
-	flex-direction: column;
 `;
 
 export const ProductImage = styled.Image`
@@ -60,37 +58,4 @@ export const ProductPrice = styled.Text`
 	margin-top: ${setHeightValue(2)}px;
 	font-size: ${setFontSizeValue(4)}px;
 	letter-spacing: ${setWidthValue(0.2)}px;
-`;
-//
-//
-//
-export const ProductContainer = styled.View`
-	background: white;
-	border-color: #cccccc;
-	width: ${setWidthValue(170)}px;
-	height: ${setHeightValue(75)}px;
-	margin-top: ${setHeightValue(3)}px;
-	border-radius: ${setHeightValue(4)}px;
-	margin-bottom: ${setHeightValue(3)}px;
-	border-bottom-width: ${setHeightValue(0.5)}px;
-`;
-
-export const Product = styled.TouchableOpacity`
-	background: white;
-	width: ${setWidthValue(45)}px;
-	height: ${setHeightValue(56)}px;
-	border-color: ${colors.primary};
-	margin-left: ${setWidthValue(2)}px;
-	margin-right: ${setWidthValue(2)}px;
-	border-radius: ${setHeightValue(4)}px;
-	border-width: ${setHeightValue(0.4)}px;
-	padding: ${setHeightValue(3)}px ${setWidthValue(2)}px;
-`;
-
-export const ProductButton = styled.TouchableOpacity`
-	background: white;
-	position: absolute;
-	margin-top: ${setHeightValue(22)}px;
-	margin-left: ${setHeightValue(30)}px;
-	border-radius: ${setHeightValue(100)}px;
 `;
