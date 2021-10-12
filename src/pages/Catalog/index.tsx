@@ -89,8 +89,8 @@ const Catalog: React.FC = () => {
 					message={'Parece que já te mostramos todas as comidinhas!'}
 				/>
 			</ScrollContainer>
-			<FloatingCart />
 			<CallWaiter />
+			<FloatingCart />
 		</Container>
 	);
 };

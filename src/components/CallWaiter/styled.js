@@ -3,14 +3,12 @@ import colors from '../../customs/colors';
 import {setHeightValue, setWidthValue} from '../../util/ajustScreen';
 
 export const Container = styled.View`
-	bottom: 0;
 	position: absolute;
-	border-color: red;
+	right: ${setWidthValue(5)}px;
+	bottom: ${setHeightValue(2)}px;
 	padding: ${setHeightValue(4)}px;
 	background-color: ${colors.primary};
-	border-width: ${setWidthValue(0.3)}px;
 	border-radius: ${setHeightValue(50)}px;
-	margin-bottom: ${setHeightValue(1.5)}px;
 `;
 
 export const Button = styled.TouchableOpacity`

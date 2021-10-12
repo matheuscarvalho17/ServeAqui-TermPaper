@@ -9,9 +9,10 @@ import {
 export const Container = styled.View`
 	width: ${setWidthValue(170)}px;
 	height: ${setHeightValue(30)}px;
+	margin-top: ${setHeightValue(4)}px;
 	background-color: ${colors.primary};
-	border-radius: ${setHeightValue(4)}px;
 	margin-bottom: ${setHeightValue(2)}px;
+	border-radius: ${setHeightValue(4)}px;
 `;
 
 export const Frame = styled.View`

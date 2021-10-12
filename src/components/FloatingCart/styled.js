@@ -7,21 +7,22 @@ import {
 } from '../../util/ajustScreen';
 
 export const Container = styled.View`
-	bottom: 0;
 	position: absolute;
 	align-items: center;
 	flex-direction: row;
+	left: ${setWidthValue(5)}px;
+	width: ${setWidthValue(135)}px;
 	justify-content: space-between;
 	background: ${colors.secondary};
-	border-top-left-radius: ${setHeightValue(3)}px;
-	border-top-right-radius: ${setHeightValue(3)}px;
-	padding: ${setHeightValue(5)}px ${setWidthValue(8)}px;
+	bottom: ${setHeightValue(3.5)}px;
+	border-radius: ${setHeightValue(3)}px;
+	padding: ${setHeightValue(5)}px ${setWidthValue(6)}px;
 `;
 
 export const CartButton = styled.TouchableOpacity`
 	flex: 1;
-	flex-direction: row;
 	align-items: center;
+	flex-direction: row;
 	justify-content: space-between;
 `;
 

@@ -13,8 +13,8 @@ const CallWaiter: React.FC = () => {
 				}}>
 				<FontistoIcon
 					name="person"
-					size={setFontSizeValue(9)}
 					color={colors.text_light}
+					size={setFontSizeValue(11)}
 				/>
 			</Button>
 		</Container>

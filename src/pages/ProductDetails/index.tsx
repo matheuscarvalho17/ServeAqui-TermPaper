@@ -4,6 +4,7 @@ import {useRoute} from '@react-navigation/native';
 import formatValues from '../../util/formatValues';
 import {Data} from '../../components/ProductsFrame';
 import EmptyFrame from '../../components/EmptyFrame';
+import CallWaiter from '../../components/CallWaiter';
 import FloatingCart from '../../components/FloatingCart';
 import {
 	Container,
@@ -57,6 +58,7 @@ const ProductDetails: React.FC = () => {
 				)}
 			/>
 			<FloatingCart />
+			<CallWaiter />
 		</Container>
 	);
 };
