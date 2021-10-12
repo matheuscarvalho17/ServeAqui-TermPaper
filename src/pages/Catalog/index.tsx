@@ -1,9 +1,13 @@
 import api from '../../services/api';
+import colors from '../../customs/colors';
 import React, {useState, useEffect} from 'react';
 import {Container, ScrollContainer} from './styled';
 import CallWaiter from '../../components/CallWaiter';
+import BannerFrame from '../../components/BannerFrame';
+import {setFontSizeValue} from '../../util/ajustScreen';
 import FloatingCart from '../../components/FloatingCart';
 import MessageFrame from '../../components/MessageFrame';
+import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
 
 const Catalog: React.FC = () => {
@@ -49,6 +53,18 @@ const Catalog: React.FC = () => {
 	return (
 		<Container>
 			<ScrollContainer showsVerticalScrollIndicator={false}>
+				<BannerFrame
+					icon={
+						<FontistoIcon
+							name="person"
+							color={colors.text_light}
+							size={setFontSizeValue(12)}
+						/>
+					}
+					text={
+						'Com dúvidas no que pedir? Chame o garçom! Ele poderá te ajudar nesta dúvida cruel.'
+					}
+				/>
 				<ProductsFrame
 					productsList={products}
 					productsType={'Feitos para você!'}
