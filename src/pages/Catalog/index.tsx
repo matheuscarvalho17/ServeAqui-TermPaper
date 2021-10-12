@@ -1,12 +1,14 @@
 import api from '../../services/api';
 import React, {useState, useEffect} from 'react';
 import {Container, ScrollContainer} from './styled';
+import CallWaiter from '../../components/CallWaiter';
 import FloatingCart from '../../components/FloatingCart';
 import MessageFrame from '../../components/MessageFrame';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
 
 const Catalog: React.FC = () => {
 	//All constants declarations
+	const [products, setProducts] = useState<Array<Data>>([]);
 	const [prodIceds, setProdIceds] = useState<Array<Data>>([]);
 	const [prodMeals, setProdMeals] = useState<Array<Data>>([]);
 	const [prodDrinks, setProdDrinks] = useState<Array<Data>>([]);
@@ -14,10 +16,10 @@ const Catalog: React.FC = () => {
 	//All functions
 	async function loadProducts() {
 		try {
-			const responseIceds = await api.get('/products?type=iced');
-			setProdIceds(responseIceds.data);
+			const responseProducts = await api.get('/products');
+			setProducts(responseProducts.data);
 		} catch (err) {
-			console.log('responseIceds', err);
+			console.log('responseProducts', err);
 		}
 		try {
 			const responseMeals = await api.get('/products?type=food');
@@ -31,6 +33,12 @@ const Catalog: React.FC = () => {
 		} catch (err) {
 			console.log('responseDrinks', err);
 		}
+		try {
+			const responseIceds = await api.get('/products?type=iced');
+			setProdIceds(responseIceds.data);
+		} catch (err) {
+			console.log('responseIceds', err);
+		}
 	}
 
 	//All useEffects
@@ -41,6 +49,11 @@ const Catalog: React.FC = () => {
 	return (
 		<Container>
 			<ScrollContainer showsVerticalScrollIndicator={false}>
+				<ProductsFrame
+					productsList={products}
+					productsType={'Feitos para você!'}
+					onPressContainer={() => {}}
+				/>
 				<ProductsFrame
 					productsList={prodMeals}
 					productsType={'Refeições'}
@@ -61,6 +74,7 @@ const Catalog: React.FC = () => {
 				/>
 			</ScrollContainer>
 			<FloatingCart />
+			<CallWaiter />
 		</Container>
 	);
 };
