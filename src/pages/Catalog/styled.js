@@ -9,7 +9,7 @@ export const Container = styled.SafeAreaView`
 	background: ${colors.background_initial};
 `;
 
-export const FlatListContainer = styled(ScrollView).attrs({})`
+export const ScrollContainer = styled(ScrollView).attrs({})`
 	flex: 1;
 	padding-top: ${setHeightValue(4)}px;
 `;

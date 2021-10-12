@@ -1,6 +1,6 @@
 import api from '../../services/api';
 import React, {useState, useEffect} from 'react';
-import {Container, FlatListContainer} from './styled';
+import {Container, ScrollContainer} from './styled';
 import FloatingCart from '../../components/FloatingCart';
 import MessageFrame from '../../components/MessageFrame';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
@@ -40,29 +40,26 @@ const Catalog: React.FC = () => {
 
 	return (
 		<Container>
-			<FlatListContainer showsVerticalScrollIndicator={false}>
+			<ScrollContainer showsVerticalScrollIndicator={false}>
 				<ProductsFrame
 					productsList={prodMeals}
 					productsType={'Refeições'}
-					onPressProduct={() => {}}
 					onPressContainer={() => {}}
 				/>
 				<ProductsFrame
 					productsList={prodDrinks}
 					productsType={'Bebidas'}
-					onPressProduct={() => {}}
 					onPressContainer={() => {}}
 				/>
 				<ProductsFrame
 					productsList={prodIceds}
 					productsType={'Gelados'}
-					onPressProduct={() => {}}
 					onPressContainer={() => {}}
 				/>
 				<MessageFrame
 					message={'Parece que já te mostramos todas as comidinhas!'}
 				/>
-			</FlatListContainer>
+			</ScrollContainer>
 			<FloatingCart />
 		</Container>
 	);

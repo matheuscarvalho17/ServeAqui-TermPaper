@@ -1,9 +1,9 @@
 import React from 'react';
-import {View} from 'react-native';
 import EmptyFrame from '../EmptyFrame';
 import {useDispatch} from 'react-redux';
 import colors from '../../customs/colors';
 import formatValues from '../../util/formatValues';
+import {useNavigation} from '@react-navigation/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import * as CartActions from '../../store/modules/cart/actions';
 import {setWidthValue, setFontSizeValue} from '../../util/ajustScreen';
@@ -30,7 +30,6 @@ interface Data {
 }
 interface IProductsFrame {
 	productsType: string;
-	onPressProduct: Function;
 	productsList: Array<Data>;
 	onPressContainer: Function;
 }
@@ -38,14 +37,14 @@ interface IProductsFrame {
 const ProductsFrame: React.FC<IProductsFrame> = ({
 	productsType,
 	productsList,
-	onPressProduct,
 	onPressContainer,
 }) => {
 	//All constants declarations
 	const dispatch = useDispatch();
+	const navigation = useNavigation();
 
 	//All functions
-	function handlerAddToCart(id) {
+	function handlerAddToCart(id: number) {
 		dispatch(CartActions.addToCartRequest(id));
 	}
 
@@ -70,7 +69,8 @@ const ProductsFrame: React.FC<IProductsFrame> = ({
 					height: 80,
 				}}
 				renderItem={({item}) => (
-					<Product onPress={onPressProduct}>
+					<Product
+						onPress={() => navigation.navigate('ProductDetails', item.id)}>
 						<ProductImage source={{uri: item.image_url}} />
 						<ProductButton onPress={() => handlerAddToCart(item.id)}>
 							<FeatherIcon

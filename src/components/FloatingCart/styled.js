@@ -29,6 +29,7 @@ export const CartTotalPrice = styled.Text`
 	font-weight: bold;
 	color: ${colors.text_light};
 	font-size: ${setFontSizeValue(4)}px;
+	letter-spacing: ${setWidthValue(0.2)}px;
 `;
 
 export const CartButtonText = styled.Text`

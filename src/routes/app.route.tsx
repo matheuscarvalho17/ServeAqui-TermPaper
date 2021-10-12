@@ -1,7 +1,9 @@
 import React from 'react';
-import Main from '../pages/Cart';
+import Cart from '../pages/Cart';
+import SignIn from '../pages/SignIn';
 import Catalog from '../pages/Catalog';
 import StackHeader from '../util/stackHeader';
+import ProductDetails from '../pages/ProductDetails';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -23,8 +25,18 @@ const AppRoute: React.FC = () => {
 				/>
 				<Stack.Screen
 					name="Cart"
-					component={Main}
+					component={Cart}
 					options={{headerTitle: 'Carrinho'}}
+				/>
+				<Stack.Screen
+					name="SignIn"
+					component={SignIn}
+					options={{headerTitle: 'Área restrita'}}
+				/>
+				<Stack.Screen
+					name="ProductDetails"
+					component={ProductDetails}
+					options={{headerTitle: 'Detalhes do produto'}}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>
