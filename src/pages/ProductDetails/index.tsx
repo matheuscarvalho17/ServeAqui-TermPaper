@@ -5,6 +5,7 @@ import formatValues from '../../util/formatValues';
 import {Data} from '../../components/ProductsFrame';
 import EmptyFrame from '../../components/EmptyFrame';
 import CallWaiter from '../../components/CallWaiter';
+import CustomFrame from '../../components/CustomFrame';
 import FloatingCart from '../../components/FloatingCart';
 import {
 	Container,
@@ -54,6 +55,13 @@ const ProductDetails: React.FC = () => {
 							<ProductDescription>{item.description}</ProductDescription>
 							<ProductPrice>{formatValues(item.price)}</ProductPrice>
 						</Informations>
+						{item.editable && (
+							<CustomFrame
+								title={'Gostaria de tomates?'}
+								label1={'Sim'}
+								label2={'Não'}
+							/>
+						)}
 					</>
 				)}
 			/>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import colors from '../../customs/colors';
-import {FlatList, ScrollView} from 'react-native-gesture-handler';
+import {FlatList} from 'react-native-gesture-handler';
 import {
 	setWidthValue,
 	setHeightValue,
@@ -16,9 +16,6 @@ export const Container = styled.SafeAreaView`
 export const ProductHeader = styled(FlatList).attrs({})`
 	width: 100%;
 `;
-export const Header = styled.View`
-	width: 100%;
-`;
 
 export const ProductImage = styled.Image`
 	width: 100%;
@@ -27,6 +24,7 @@ export const ProductImage = styled.Image`
 
 export const Informations = styled.View`
 	width: 100%;
+	border-color: lightgrey;
 	background-color: white;
 	justify-content: center;
 	height: ${setHeightValue(40)}px;
@@ -34,7 +32,6 @@ export const Informations = styled.View`
 	padding-left: ${setWidthValue(4)}px;
 	padding-right: ${setWidthValue(4)}px;
 	padding-bottom: ${setHeightValue(1)}px;
-	border-color: lightgrey;
 	border-bottom-width: ${setHeightValue(0.5)}px;
 `;
 
