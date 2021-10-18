@@ -12,16 +12,14 @@ export const Container = styled.SafeAreaView`
 	align-items: center;
 	background: ${colors.background_initial};
 `;
-
+//Header
 export const ProductHeader = styled(FlatList).attrs({})`
 	width: 100%;
 `;
-
 export const ProductImage = styled.Image`
 	width: 100%;
 	height: ${setHeightValue(70)}px;
 `;
-
 export const Informations = styled.View`
 	width: 100%;
 	border-color: lightgrey;
@@ -34,13 +32,11 @@ export const Informations = styled.View`
 	padding-bottom: ${setHeightValue(1)}px;
 	border-bottom-width: ${setHeightValue(0.5)}px;
 `;
-
 export const ProductTitle = styled.Text`
 	font-weight: bold;
 	color: ${colors.text_dark};
 	font-size: ${setFontSizeValue(5.5)}px;
 `;
-
 export const ProductDescription = styled.Text`
 	color: ${colors.text_dark};
 	margin-top: ${setHeightValue(2)}px;
@@ -48,7 +44,6 @@ export const ProductDescription = styled.Text`
 	font-size: ${setFontSizeValue(4)}px;
 	letter-spacing: ${setWidthValue(0.2)}px;
 `;
-
 export const ProductPrice = styled.Text`
 	font-weight: bold;
 	color: ${colors.price};

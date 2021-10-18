@@ -1,4 +1,3 @@
-import {View} from 'react-native';
 import React, {useMemo} from 'react';
 import colors from '../../customs/colors';
 import EmptyCart from '../../components/EmptyCart';
@@ -11,6 +10,7 @@ import {
 	Product,
 	Container,
 	ProductList,
+	FinishButton,
 	ProductImage,
 	ProductTitle,
 	ProductPrice,
@@ -20,6 +20,7 @@ import {
 	ProductQuantity,
 	ActionContainer,
 	ProductContainer,
+	FinishButtonText,
 	TotalProductsText,
 	ProductSinglePrice,
 	ProductPriceContainer,
@@ -106,7 +107,7 @@ const Cart: React.FC = () => {
 			{/* Information Cart */}
 			<TotalProductsContainer>
 				<FeatherIcon
-					name="shopping-cart"
+					name={'shopping-cart'}
 					color={colors.text_light}
 					size={setFontSizeValue(6)}
 				/>
@@ -114,6 +115,9 @@ const Cart: React.FC = () => {
 					{cartSize} {cartSize == 1 ? 'item' : 'itens'}
 				</TotalProductsText>
 				<SubTotalValue>{cartTotal}</SubTotalValue>
+				<FinishButton onPress={() => console.log('Realizar pedido')}>
+					<FinishButtonText>{'Realizar pedido'}</FinishButtonText>
+				</FinishButton>
 			</TotalProductsContainer>
 		</Container>
 	);

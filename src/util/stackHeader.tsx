@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import colors from '../customs/colors';
 import {StyleSheet} from 'react-native';
 import {Appbar} from 'react-native-paper';
@@ -24,12 +24,16 @@ const StackHeader = ({scene, navigation}) => {
 				/>
 			)}
 			<Appbar.Content title={title} titleStyle={styles.title} />
-			<Appbar.Action
-				icon="magnify"
-				color={colors.text_light}
-				size={setFontSizeValue(6)}
-				onPress={() => console.log('Notification pressed2')}
-			/>
+			{!navigation.canGoBack() ? (
+				<Appbar.Action
+					icon="magnify"
+					color={colors.text_light}
+					size={setFontSizeValue(6)}
+					onPress={() => console.log('Notification pressed2')}
+				/>
+			) : (
+				<></>
+			)}
 			<Appbar.Action
 				icon="dots-vertical"
 				color={colors.text_light}
