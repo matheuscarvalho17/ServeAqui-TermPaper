@@ -2,6 +2,7 @@ import api from '../../services/api';
 import React, {useEffect, useState} from 'react';
 import {useRoute} from '@react-navigation/native';
 import formatValues from '../../util/formatValues';
+import {RouteProp} from '@react-navigation/native';
 import {Data} from '../../components/ProductsFrame';
 import EmptyFrame from '../../components/EmptyFrame';
 import CallWaiter from '../../components/CallWaiter';
@@ -13,21 +14,20 @@ import {
 	ProductTitle,
 	ProductPrice,
 	Informations,
-	ProductHeader,
 	ProductDescription,
 } from './styled';
 
 const ProductDetails: React.FC = () => {
 	//All constants declarations
-	const route = useRoute();
-	const idProduct = route.params;
-	const [product, setProduct] = useState<Array<Data>>([]);
+	const route: RouteProp<{params: {idProduct: number}}, 'params'> = useRoute();
+	const {idProduct} = route.params;
+	const [product, setProduct] = useState<Data>();
 
 	//All functions
 	async function loadProduct() {
 		try {
 			const response = await api.get(`/products?id=${idProduct}`);
-			setProduct(response.data);
+			setProduct(response.data[0]);
 		} catch (err) {
 			console.log('product', err);
 		}
@@ -40,31 +40,25 @@ const ProductDetails: React.FC = () => {
 
 	return (
 		<Container>
-			<ProductHeader
-				data={product}
-				keyExtractor={item => item.id}
-				ListEmptyComponent={<EmptyFrame />}
-				ListFooterComponentStyle={{
-					height: 80,
-				}}
-				renderItem={({item}) => (
-					<>
-						<ProductImage source={{uri: item.image_url}} />
-						<Informations>
-							<ProductTitle>{item.title}</ProductTitle>
-							<ProductDescription>{item.description}</ProductDescription>
-							<ProductPrice>{formatValues(item.price)}</ProductPrice>
-						</Informations>
-						{item.editable && (
-							<CustomFrame
-								title={'Gostaria de tomates?'}
-								label1={'Sim'}
-								label2={'Não'}
-							/>
-						)}
-					</>
-				)}
-			/>
+			{product ? (
+				<>
+					<ProductImage source={{uri: product.image_url}} />
+					<Informations>
+						<ProductTitle>{product.title}</ProductTitle>
+						<ProductDescription>{product.description}</ProductDescription>
+						<ProductPrice>{formatValues(product.price)}</ProductPrice>
+					</Informations>
+					{product.editable && (
+						<CustomFrame
+							title={'Gostaria de tomates?'}
+							label1={'Sim'}
+							label2={'Não'}
+						/>
+					)}
+				</>
+			) : (
+				<EmptyFrame />
+			)}
 			<FloatingCart />
 			<CallWaiter />
 		</Container>

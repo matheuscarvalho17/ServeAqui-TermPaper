@@ -3,6 +3,7 @@
 		{
 			"id": 1,
 			"price": 20,
+			"amount": 20,
 			"editable": false,
 			"type": "food",
 			"title": "Bife suíno com salada",
@@ -13,6 +14,7 @@
 		{
 			"id": 2,
 			"price": 25,
+			"amount": 20,
 			"editable": true,
 			"type": "food",
 			"title": "Filé de peixe com salada",
@@ -23,6 +25,7 @@
 		{
 			"id": 3,
 			"price": 45,
+			"amount": 20,
 			"editable": false,
 			"type": "food",
 			"title": "Espetinho de churrasco com salada",
@@ -34,6 +37,7 @@
 		{
 			"id": 4,
 			"price": 35,
+			"amount": 20,
 			"editable": true,
 			"type": "food",
 			"title": "Prato feito completo com fritas",
@@ -45,6 +49,7 @@
 		{
 			"id": 5,
 			"price": 3,
+			"amount": 20,
 			"editable": false,
 			"type": "drink",
 			"title": "Coca-Cola Lata 350ml",
@@ -55,6 +60,7 @@
 		{
 			"id": 6,
 			"price": 4,
+			"amount": 20,
 			"editable": false,
 			"type": "drink",
 			"title": "Heineken Lata 350ml",
@@ -64,6 +70,7 @@
 		{
 			"id": 7,
 			"price": 135,
+			"amount": 20,
 			"editable": false,
 			"type": "drink",
 			"title": "Gin Tanqueray 750ml",
@@ -74,6 +81,7 @@
 		{
 			"id": 8,
 			"price": 12,
+			"amount": 20,
 			"editable": true,
 			"type": "iced",
 			"title": "Açaí com morango 200ml",
@@ -84,6 +92,7 @@
 		{
 			"id": 9,
 			"price": 6,
+			"amount": 20,
 			"editable": true,
 			"type": "iced",
 			"title": "Picolé de Chocolate",
@@ -94,6 +103,7 @@
 		{
 			"id": 10,
 			"price": 25,
+			"amount": 20,
 			"editable": true,
 			"type": "iced",
 			"title": "Taça sorvete 2 sabores",

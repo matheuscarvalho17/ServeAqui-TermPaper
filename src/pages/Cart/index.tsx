@@ -2,6 +2,7 @@ import React, {useMemo} from 'react';
 import colors from '../../customs/colors';
 import EmptyCart from '../../components/EmptyCart';
 import formatValues from '../../util/formatValues';
+import {Data} from '../../components/ProductsFrame';
 import {useSelector, useDispatch} from 'react-redux';
 import {setFontSizeValue} from '../../util/ajustScreen';
 import FeatherIcon from 'react-native-vector-icons/Feather';
@@ -47,10 +48,10 @@ const Cart: React.FC = () => {
 	function removeFromCart(id: number) {
 		dispatch(CartActions.removeFromCart(id));
 	}
-	function increment(product: any) {
+	function increment(product: Data) {
 		dispatch(CartActions.updateAmountRequest(product.id, product.amount + 1));
 	}
-	function decrement(product: any) {
+	function decrement(product: Data) {
 		dispatch(CartActions.updateAmountRequest(product.id, product.amount - 1));
 	}
 
@@ -60,12 +61,12 @@ const Cart: React.FC = () => {
 			<ProductContainer>
 				<ProductList
 					data={products}
-					keyExtractor={item => item.id}
+					keyExtractor={(item: Data) => String(item.id)}
 					ListEmptyComponent={<EmptyCart />}
 					ListFooterComponentStyle={{
 						height: 80,
 					}}
-					renderItem={({item}) => (
+					renderItem={({item}: {item: Data}) => (
 						<Product>
 							<ProductImage source={{uri: item.image_url}} />
 							<ProductTitleContainer>

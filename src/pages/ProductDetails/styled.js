@@ -13,9 +13,6 @@ export const Container = styled.SafeAreaView`
 	background: ${colors.background_initial};
 `;
 //Header
-export const ProductHeader = styled(FlatList).attrs({})`
-	width: 100%;
-`;
 export const ProductImage = styled.Image`
 	width: 100%;
 	height: ${setHeightValue(70)}px;

@@ -20,13 +20,14 @@ import {
 } from './styled';
 
 interface Data {
-	id: number;
-	type: string;
-	title: string;
-	price: number;
-	editable: boolean;
-	image_url: string;
-	description: string;
+	id?: number;
+	type?: string;
+	title?: string;
+	price?: number;
+	amount?: number;
+	editable?: boolean;
+	image_url?: string;
+	description?: string;
 }
 interface IProductsFrame {
 	productsType: string;
@@ -62,15 +63,17 @@ const ProductsFrame: React.FC<IProductsFrame> = ({
 			<ProductList
 				horizontal={true}
 				data={productsList}
-				keyExtractor={item => item.id}
+				keyExtractor={(item: Data) => String(item.id)}
 				ListEmptyComponent={<EmptyFrame />}
 				showsHorizontalScrollIndicator={false}
 				ListFooterComponentStyle={{
 					height: 80,
 				}}
-				renderItem={({item}) => (
+				renderItem={({item}: {item: Data}) => (
 					<Product
-						onPress={() => navigation.navigate('ProductDetails', item.id)}>
+						onPress={() =>
+							navigation.navigate('ProductDetails', {idProduct: item.id})
+						}>
 						<ProductImage source={{uri: item.image_url}} />
 						<ProductButton onPress={() => handlerAddToCart(item.id)}>
 							<FeatherIcon
