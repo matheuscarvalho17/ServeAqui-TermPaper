@@ -3,7 +3,7 @@ const colors = {
 	primary: '#FF8C00',
 	secondary: '#FF4500',
 	tertiary: '#E8DA00',
-	opacity_primary: '233, 120, 54, 0.27',
+	opacity_primary: 'rgba(233, 120, 54, 0.27)',
 	//texts
 	price: '#0e960e',
 	text_light: '#F3F9FF',

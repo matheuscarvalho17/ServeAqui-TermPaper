@@ -82,7 +82,7 @@ export const ActionButton = styled.TouchableOpacity`
 	padding: ${setWidthValue(3)}px;
 	border-radius: ${setHeightValue(2)}px;
 	margin-bottom: ${setHeightValue(2)}px;
-	background: rgba(${colors.opacity_primary});
+	background: ${colors.opacity_primary};
 `;
 
 //FloatingCart

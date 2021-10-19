@@ -1,6 +1,7 @@
 import api from '../../services/api';
 import colors from '../../customs/colors';
 import React, {useState, useEffect} from 'react';
+import ModalIcon from '../../components/ModalIcon';
 import {Container, ScrollContainer} from './styled';
 import CallWaiter from '../../components/CallWaiter';
 import BannerFrame from '../../components/BannerFrame';
@@ -12,6 +13,7 @@ import {ProductsFrame, Data} from '../../components/ProductsFrame';
 
 const Catalog: React.FC = () => {
 	//All constants declarations
+	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [products, setProducts] = useState<Array<Data>>([]);
 	const [prodIceds, setProdIceds] = useState<Array<Data>>([]);
 	const [prodMeals, setProdMeals] = useState<Array<Data>>([]);
@@ -51,47 +53,65 @@ const Catalog: React.FC = () => {
 	}, []);
 
 	return (
-		<Container>
-			<ScrollContainer showsVerticalScrollIndicator={false}>
-				<BannerFrame
-					icon={
-						<FontistoIcon
-							name="person"
-							color={colors.text_light}
-							size={setFontSizeValue(12)}
-						/>
-					}
-					text={
-						'Com dúvidas no que pedir? Chame o garçom! Ele poderá te ajudar nesta dúvida cruel.'
-					}
+		<>
+			<Container>
+				<ScrollContainer showsVerticalScrollIndicator={false}>
+					<BannerFrame
+						icon={
+							<FontistoIcon
+								name="person"
+								color={colors.text_light}
+								size={setFontSizeValue(12)}
+							/>
+						}
+						text={
+							'Com dúvidas no que pedir? Chame o garçom! Ele poderá te ajudar nesta dúvida cruel.'
+						}
+					/>
+					<ProductsFrame
+						productsList={products}
+						productsType={'Feitos para você!'}
+						onPressContainer={() => {}}
+					/>
+					<ProductsFrame
+						productsList={prodMeals}
+						productsType={'Refeições'}
+						onPressContainer={() => {}}
+					/>
+					<ProductsFrame
+						productsList={prodDrinks}
+						productsType={'Bebidas'}
+						onPressContainer={() => {}}
+					/>
+					<ProductsFrame
+						productsList={prodIceds}
+						productsType={'Gelados'}
+						onPressContainer={() => {}}
+					/>
+					<MessageFrame
+						message={'Parece que já te mostramos todas as comidinhas!'}
+					/>
+				</ScrollContainer>
+				<CallWaiter
+					onPress={() => {
+						setOpenModal(true);
+					}}
 				/>
-				<ProductsFrame
-					productsList={products}
-					productsType={'Feitos para você!'}
-					onPressContainer={() => {}}
-				/>
-				<ProductsFrame
-					productsList={prodMeals}
-					productsType={'Refeições'}
-					onPressContainer={() => {}}
-				/>
-				<ProductsFrame
-					productsList={prodDrinks}
-					productsType={'Bebidas'}
-					onPressContainer={() => {}}
-				/>
-				<ProductsFrame
-					productsList={prodIceds}
-					productsType={'Gelados'}
-					onPressContainer={() => {}}
-				/>
-				<MessageFrame
-					message={'Parece que já te mostramos todas as comidinhas!'}
-				/>
-			</ScrollContainer>
-			<CallWaiter />
-			<FloatingCart />
-		</Container>
+				<FloatingCart />
+			</Container>
+			<ModalIcon
+				visible={openModal}
+				setVisible={setOpenModal}
+				OkOnPress={() => console.log('Chamar garçom')}
+				text={'Aguarde um instante. Um garçom foi chamado à sua mesa!'}
+				icon={
+					<FontistoIcon
+						name="person"
+						style={{color: colors.text_dark, fontSize: setFontSizeValue(14)}}
+					/>
+				}
+			/>
+		</>
 	);
 };
 

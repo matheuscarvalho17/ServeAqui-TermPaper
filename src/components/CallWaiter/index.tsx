@@ -4,13 +4,14 @@ import {Container, Button} from './styled';
 import {setFontSizeValue} from '../../util/ajustScreen';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 
-const CallWaiter: React.FC = () => {
+interface ICallWaiter {
+	onPress: Function;
+}
+
+const CallWaiter: React.FC<ICallWaiter> = ({onPress}) => {
 	return (
 		<Container>
-			<Button
-				onPress={() => {
-					console.log('Chamando garçom à mesa!');
-				}}>
+			<Button onPress={onPress}>
 				<FontistoIcon
 					name="person"
 					color={colors.text_light}

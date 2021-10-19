@@ -7,7 +7,6 @@ export const Container = styled.SafeAreaView`
 	align-items: center;
 	background-color: ${colors.background_initial};
 `;
-
 export const ScrollContainer = styled(ScrollView).attrs({})`
 	flex: 1;
 `;
