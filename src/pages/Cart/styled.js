@@ -10,15 +10,14 @@ import {
 export const Container = styled.SafeAreaView`
 	flex: 1;
 	align-items: center;
-	background: ${colors.background_initial};
+	background: ${colors.primary};
 `;
 //Product
 export const ProductContainer = styled.View`
 	flex: 1;
 	flex-direction: row;
-	margin-top: ${setHeightValue(10)}px;
 	background-color: ${colors.secondary};
-	border-radius: ${setHeightValue(4)}px;
+	border-radius: ${setHeightValue(7)}px;
 `;
 export const ProductList = styled(FlatList)`
 	flex: 1;
