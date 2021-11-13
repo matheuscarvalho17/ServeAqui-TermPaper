@@ -9,7 +9,7 @@ const EmpytCart: React.FC = () => {
 			<CartContainer>
 				<LottieView source={EmptyCart} resizeMode="contain" autoPlay />
 			</CartContainer>
-			<Text>Seu carrinho tá sem nada! Compra algo ai!</Text>
+			<Text>{'Seu carrinho tá sem nada!\nCompra algo ai!'}</Text>
 		</Container>
 	);
 };

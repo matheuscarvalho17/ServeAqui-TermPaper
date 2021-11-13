@@ -9,7 +9,9 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import * as CartActions from '../../store/modules/cart/actions';
 import {
 	Product,
+	CleanText,
 	Container,
+	CleanButton,
 	ProductList,
 	FinishButton,
 	ProductImage,
@@ -17,6 +19,7 @@ import {
 	ProductPrice,
 	ActionButton,
 	SubTotalValue,
+	CleanContainer,
 	TotalContainer,
 	ProductQuantity,
 	ActionContainer,
@@ -59,6 +62,15 @@ const Cart: React.FC = () => {
 		<Container>
 			{/* Cart */}
 			<ProductContainer>
+				{cartSize > 0 ? (
+					<CleanContainer>
+						<CleanButton onPress={() => console.log('Limpar carrinho')}>
+							<CleanText>{'Limpar carrinho'}</CleanText>
+						</CleanButton>
+					</CleanContainer>
+				) : (
+					<></>
+				)}
 				<ProductList
 					data={products}
 					keyExtractor={(item: Data) => String(item.id)}
@@ -116,9 +128,13 @@ const Cart: React.FC = () => {
 					{cartSize} {cartSize == 1 ? 'item' : 'itens'}
 				</TotalProductsText>
 				<SubTotalValue>{cartTotal}</SubTotalValue>
-				<FinishButton onPress={() => console.log('Realizar pedido')}>
-					<FinishButtonText>{'Realizar pedido'}</FinishButtonText>
-				</FinishButton>
+				{cartSize > 0 ? (
+					<FinishButton onPress={() => console.log('Realizar pedido')}>
+						<FinishButtonText>{'Realizar pedido'}</FinishButtonText>
+					</FinishButton>
+				) : (
+					<></>
+				)}
 			</TotalProductsContainer>
 		</Container>
 	);

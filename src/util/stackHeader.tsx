@@ -38,6 +38,7 @@ const StackHeader = ({scene, navigation}) => {
 				icon="dots-vertical"
 				color={colors.text_light}
 				size={setFontSizeValue(6)}
+				onLongPress={() => console.log('Notification longPressed3')}
 				onPress={() => console.log('Notification pressed3')}
 			/>
 		</Appbar.Header>

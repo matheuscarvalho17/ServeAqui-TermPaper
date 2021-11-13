@@ -10,17 +10,31 @@ import {
 export const Container = styled.SafeAreaView`
 	flex: 1;
 	align-items: center;
-	background: ${colors.primary};
+	background: ${colors.background_initial};
 `;
 //Product
 export const ProductContainer = styled.View`
 	flex: 1;
-	flex-direction: row;
+	width: 100%;
 	background-color: ${colors.secondary};
-	border-radius: ${setHeightValue(7)}px;
+`;
+export const CleanContainer = styled.View`
+	flex: 0.04;
+	align-items: flex-end;
+	justify-content: flex-end;
+	padding-right: ${setWidthValue(5)}px;
+`;
+export const CleanButton = styled.TouchableOpacity`
+	padding: ${setWidthValue(0.3)}px;
+`;
+export const CleanText = styled.Text`
+	color: ${colors.text_light};
+	margin-top: ${setHeightValue(2)}px;
+	font-size: ${setFontSizeValue(4)}px;
 `;
 export const ProductList = styled(FlatList)`
-	flex: 1;
+	flex: 0.96;
+	width: 100%;
 	padding: ${setHeightValue(5)}px ${setWidthValue(3)}px;
 `;
 export const Product = styled.View`
@@ -87,10 +101,12 @@ export const ActionButton = styled.TouchableOpacity`
 //FloatingCart
 export const TotalProductsContainer = styled.View`
 	bottom: 0;
+	width: 100%;
 	position: absolute;
 	align-items: center;
 	flex-direction: row;
 	justify-content: space-between;
+	height: ${setHeightValue(17)}px;
 	background: ${colors.secondary};
 	border-color: ${colors.primary};
 	border-top-width: ${setHeightValue(0.4)}px;
