@@ -12,16 +12,12 @@ const StackHeader = ({scene, navigation}) => {
 		<Appbar.Header style={styles.header}>
 			{navigation.canGoBack() ? (
 				<Appbar.BackAction
-					onPress={() => navigation.pop()}
-					color={colors.text_light}
-				/>
-			) : (
-				<Appbar.Action
-					icon="information-outline"
 					color={colors.text_light}
 					size={setFontSizeValue(6)}
-					onPress={() => console.log('Notification pressed1')}
+					onPress={() => navigation.pop()}
 				/>
+			) : (
+				<></>
 			)}
 			<Appbar.Content title={title} titleStyle={styles.title} />
 			{!navigation.canGoBack() ? (
@@ -29,17 +25,17 @@ const StackHeader = ({scene, navigation}) => {
 					icon="magnify"
 					color={colors.text_light}
 					size={setFontSizeValue(6)}
-					onPress={() => console.log('Notification pressed2')}
+					onPress={() => console.log('Pesquisar produto')}
 				/>
 			) : (
 				<></>
 			)}
 			<Appbar.Action
+				onPress={() => {}}
 				icon="dots-vertical"
 				color={colors.text_light}
 				size={setFontSizeValue(6)}
-				onLongPress={() => console.log('Notification longPressed3')}
-				onPress={() => console.log('Notification pressed3')}
+				onLongPress={() => navigation.navigate('SignIn')}
 			/>
 		</Appbar.Header>
 	);

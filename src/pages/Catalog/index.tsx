@@ -64,7 +64,7 @@ const Catalog: React.FC = () => {
 								size={setFontSizeValue(12)}
 							/>
 						}
-						text={
+						message={
 							'Com dúvidas no que pedir? Chame o garçom! Ele poderá te ajudar nesta dúvida cruel.'
 						}
 					/>

@@ -2,15 +2,15 @@ import React from 'react';
 import {Text, Frame, Container} from './styled';
 
 interface IBannerFrame {
-	text: string;
+	message: string;
 	icon?: React.ReactNode;
 }
 
-const BannerFrame: React.FC<IBannerFrame> = ({text, icon}) => {
+const BannerFrame: React.FC<IBannerFrame> = ({icon, message}) => {
 	return (
 		<Container>
 			<Frame>
-				<Text>{text}</Text>
+				<Text>{message}</Text>
 				{icon}
 			</Frame>
 		</Container>
