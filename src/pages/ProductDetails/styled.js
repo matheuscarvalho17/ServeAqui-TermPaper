@@ -1,6 +1,6 @@
 import styled from 'styled-components';
+import {FlatList, StyleSheet} from 'react-native';
 import colors from '../../customs/colors';
-import {FlatList} from 'react-native-gesture-handler';
 import {
 	setWidthValue,
 	setHeightValue,
@@ -48,3 +48,44 @@ export const ProductPrice = styled.Text`
 	font-size: ${setFontSizeValue(4)}px;
 	letter-spacing: ${setWidthValue(0.2)}px;
 `;
+
+//Buttons
+export const ButtonContainer = styled.View`
+	width: 100%;
+	justify-content: center;
+	height: ${setHeightValue(30)}px;
+`;
+export const ActionContainer = styled.View`
+	align-self: center;
+	align-items: center;
+	flex-direction: row;
+	background-color: white;
+	width: ${setWidthValue(80)}px;
+	justify-content: space-between;
+	height: ${setHeightValue(15)}px;
+	border-radius: ${setHeightValue(2)}px;
+`;
+export const ActionButton = styled.TouchableOpacity`
+	align-items: center;
+	justify-content: center;
+	background: ${colors.primary};
+	width: ${setWidthValue(15)}px;
+	padding: ${setWidthValue(3)}px;
+	height: ${setHeightValue(15)}px;
+	border-radius: ${setHeightValue(2)}px;
+`;
+export const TextButton = styled.Text`
+	font-weight: bold;
+	color: ${colors.text_dark};
+	font-size: ${setFontSizeValue(4.5)}px;
+	letter-spacing: ${setWidthValue(0.2)}px;
+`;
+export const ProductList = styled(FlatList)`
+	flex: 1;
+`;
+export const styles = StyleSheet.create({
+	icon: {
+		color: colors.text_light,
+		fontSize: setFontSizeValue(5),
+	},
+});

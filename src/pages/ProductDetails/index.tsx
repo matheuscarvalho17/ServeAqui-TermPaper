@@ -1,32 +1,43 @@
 import api from '../../services/api';
 import colors from '../../customs/colors';
-import React, {useEffect, useState} from 'react';
 import {useRoute} from '@react-navigation/native';
 import formatValues from '../../util/formatValues';
 import {RouteProp} from '@react-navigation/native';
 import ModalIcon from '../../components/ModalIcon';
 import {Data} from '../../components/ProductsFrame';
 import EmptyFrame from '../../components/EmptyFrame';
+import {useSelector, useDispatch} from 'react-redux';
 import CallWaiter from '../../components/CallWaiter';
 import CustomFrame from '../../components/CustomFrame';
 import {setFontSizeValue} from '../../util/ajustScreen';
 import FloatingCart from '../../components/FloatingCart';
+import React, {useEffect, useState, useMemo} from 'react';
+import FeatherIcon from 'react-native-vector-icons/Feather';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
+import * as CartActions from '../../store/modules/cart/actions';
 import {
+	styles,
 	Container,
+	TextButton,
 	ProductImage,
 	ProductTitle,
 	ProductPrice,
+	ActionButton,
 	Informations,
+	ButtonContainer,
+	ActionContainer,
 	ProductDescription,
+	ProductList,
 } from './styled';
 
 const ProductDetails: React.FC = () => {
 	//All constants declarations
-	const route: RouteProp<{params: {idProduct: number}}, 'params'> = useRoute();
-	const {idProduct} = route.params;
+	const dispatch = useDispatch();
 	const [product, setProduct] = useState<Data>();
 	const [openModal, setOpenModal] = useState<boolean>(false);
+	const products = useSelector(({cart}: {cart: any}) => cart);
+	const route: RouteProp<{params: {idProduct: number}}, 'params'> = useRoute();
+	const {idProduct} = route.params;
 
 	//All functions
 	async function loadProduct() {
@@ -36,6 +47,17 @@ const ProductDetails: React.FC = () => {
 		} catch (err) {
 			console.log('product', err);
 		}
+	}
+
+	//All functions
+	function removeFromCart(id: number) {
+		dispatch(CartActions.removeFromCart(id));
+	}
+	function increment(product: Data) {
+		dispatch(CartActions.updateAmountRequest(product.id, product.amount + 1));
+	}
+	function decrement(product: Data) {
+		dispatch(CartActions.updateAmountRequest(product.id, product.amount - 1));
 	}
 
 	//All useEffects
@@ -61,6 +83,34 @@ const ProductDetails: React.FC = () => {
 								label2={'Não'}
 							/>
 						)}
+						<ProductList
+							data={products}
+							keyExtractor={(item: Data) => String(item.id)}
+							ListFooterComponentStyle={{
+								height: 80,
+							}}
+							renderItem={({item}: {item: Data}) => (
+								<ButtonContainer>
+									<ActionContainer>
+										<ActionButton
+											onPress={() =>
+												item.amount > 1
+													? decrement(item)
+													: removeFromCart(item.id)
+											}>
+											<FeatherIcon name="minus" style={styles.icon} />
+										</ActionButton>
+										<TextButton>{item.amount}</TextButton>
+										<ActionButton
+											onPress={() => {
+												increment(item);
+											}}>
+											<FeatherIcon name="plus" style={styles.icon} />
+										</ActionButton>
+									</ActionContainer>
+								</ButtonContainer>
+							)}
+						/>
 					</>
 				) : (
 					<EmptyFrame />

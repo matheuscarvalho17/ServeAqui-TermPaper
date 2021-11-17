@@ -11,6 +11,7 @@ import MessageFrame from '../../components/MessageFrame';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
 import SignIn from '../../components/SignIn';
+import {styles} from '../ProductDetails/styled';
 
 const Catalog: React.FC = () => {
 	//All constants declarations
@@ -106,12 +107,7 @@ const Catalog: React.FC = () => {
 				setVisible={setOpenModal}
 				OkOnPress={() => console.log('Chamar garçom')}
 				text={'Aguarde um instante. Um garçom foi chamado à sua mesa!'}
-				icon={
-					<FontistoIcon
-						name="person"
-						style={{color: colors.text_dark, fontSize: setFontSizeValue(14)}}
-					/>
-				}
+				icon={<FontistoIcon name="person" style={styles.icon} />}
 			/>
 			<SignIn
 				visible={openModalLogin}
