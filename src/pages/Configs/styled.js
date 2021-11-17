@@ -18,84 +18,72 @@ export const BannerContainer = styled.View`
 `;
 export const Informations = styled.View`
 	width: 100%;
+	flex-direction: row;
 	border-color: lightgrey;
 	background-color: white;
 	justify-content: center;
-	height: ${setHeightValue(40)}px;
-	padding-top: ${setHeightValue(1)}px;
-	padding-left: ${setWidthValue(4)}px;
-	padding-right: ${setWidthValue(4)}px;
-	padding-bottom: ${setHeightValue(1)}px;
+	height: ${setHeightValue(45)}px;
+	padding: ${setHeightValue(5)}px;
 	border-bottom-width: ${setHeightValue(0.5)}px;
+`;
+export const LeftContainer = styled.View`
+	width: 60%;
+	height: 100%;
+	justify-content: space-around;
+`;
+export const RightContainer = styled.View`
+	width: 40%;
+	height: 100%;
+	align-items: center;
+	justify-content: space-around;
+`;
+export const StatusContainer = styled.View`
+	flex-direction: row;
 `;
 export const Title = styled.Text`
 	font-weight: bold;
 	color: ${colors.text_dark};
-	font-size: ${setFontSizeValue(5.5)}px;
-`;
-export const StatusContainer = styled.View`
-	flex-direction: row;
-	margin-top: ${setHeightValue(2)}px;
-`;
-export const Status = styled.Text`
-	color: ${colors.text_dark};
-	line-height: ${setHeightValue(5)}px;
-	font-size: ${setFontSizeValue(4)}px;
-	margin-right: ${setHeightValue(2)}px;
-	letter-spacing: ${setWidthValue(0.2)}px;
+	margin-right: ${setHeightValue(3)}px;
+	font-size: ${setFontSizeValue(4.5)}px;
 `;
 export const Avaliable = styled.Text`
 	font-weight: bold;
 	color: ${colors.avaliable};
-	font-size: ${setFontSizeValue(4)}px;
+	font-size: ${setFontSizeValue(4.5)}px;
 	letter-spacing: ${setWidthValue(0.2)}px;
 `;
 export const NotAvaliable = styled.Text`
 	font-weight: bold;
 	color: ${colors.notAvaliable};
-	font-size: ${setFontSizeValue(4)}px;
+	font-size: ${setFontSizeValue(4.5)}px;
 	letter-spacing: ${setWidthValue(0.2)}px;
 `;
-
 //Buttons
-export const ButtonContainer = styled.View`
-	width: 100%;
-	justify-content: center;
-	height: ${setHeightValue(30)}px;
-`;
-export const ActionContainer = styled.View`
-	align-self: center;
-	align-items: center;
-	flex-direction: row;
-	background-color: white;
-	width: ${setWidthValue(80)}px;
-	justify-content: space-between;
-	height: ${setHeightValue(15)}px;
-	border-radius: ${setHeightValue(2)}px;
-`;
 export const ActionButton = styled.TouchableOpacity`
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	background: ${colors.primary};
-	width: ${setWidthValue(15)}px;
+	width: ${setWidthValue(50)}px;
 	padding: ${setWidthValue(3)}px;
-	height: ${setHeightValue(15)}px;
+	height: ${setHeightValue(13)}px;
 	border-radius: ${setHeightValue(2)}px;
 `;
 export const TextButton = styled.Text`
 	font-weight: bold;
-	color: ${colors.text_dark};
+	color: ${colors.text_light};
 	font-size: ${setFontSizeValue(4.5)}px;
 	letter-spacing: ${setWidthValue(0.2)}px;
 `;
 
 export const styles = StyleSheet.create({
-	icon: {
-		color: colors.text_light,
-		fontSize: setFontSizeValue(5),
-	},
 	bannerIcon: {
 		color: colors.text_light,
 		fontSize: setFontSizeValue(12),
+	},
+	icon: {
+		color: colors.text_light,
+		marginLeft: setWidthValue(3),
+		fontSize: setFontSizeValue(5.5),
 	},
 });

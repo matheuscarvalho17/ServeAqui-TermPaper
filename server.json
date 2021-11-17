@@ -113,23 +113,23 @@
 	],
 	"tables": [
 		{
-			"id": 1,
+			"id": "1",
 			"status": "DISPONÍVEL"
 		},
 		{
-			"id": 2,
+			"id": "2",
 			"status": "DISPONÍVEL"
 		},
 		{
-			"id": 3,
+			"id": "3",
 			"status": "RESERVADA"
 		},
 		{
-			"id": 4,
+			"id": "4",
 			"status": "RESERVADA"
 		},
 		{
-			"id": 5,
+			"id": "5",
 			"status": "DISPONÍVEL"
 		}
 	]
