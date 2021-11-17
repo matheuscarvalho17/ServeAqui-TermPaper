@@ -18,4 +18,8 @@ export const styles = StyleSheet.create({
 		color: colors.text_light,
 		fontSize: setFontSizeValue(5),
 	},
+	bannerIcon: {
+		color: colors.text_light,
+		fontSize: setFontSizeValue(12),
+	},
 });

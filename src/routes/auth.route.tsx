@@ -1,5 +1,6 @@
 import React from 'react';
-import SignIn from '../pages/SignIn';
+import Configs from '../pages/Configs';
+import StackHeader from '../util/stackHeader';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -10,9 +11,15 @@ const AuthRoute: React.FC = () => {
 		<NavigationContainer>
 			<Stack.Navigator
 				screenOptions={{
-					headerShown: false,
+					header: ({scene, navigation}) => (
+						<StackHeader scene={scene} navigation={navigation} />
+					),
 				}}>
-				<Stack.Screen name="SignIn" component={SignIn} />
+				<Stack.Screen
+					name="Configs"
+					component={Configs}
+					options={{headerTitle: 'Configurações da Mesa'}}
+				/>
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

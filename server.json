@@ -110,5 +110,27 @@
 			"image_url":
 				"https://www.kindpng.com/picc/m/53-538712_taa-de-aa-deligeli-sorvete-taa-png-transparent.png"
 		}
+	],
+	"tables": [
+		{
+			"id": 1,
+			"status": "DISPONÍVEL"
+		},
+		{
+			"id": 2,
+			"status": "DISPONÍVEL"
+		},
+		{
+			"id": 3,
+			"status": "RESERVADA"
+		},
+		{
+			"id": 4,
+			"status": "RESERVADA"
+		},
+		{
+			"id": 5,
+			"status": "DISPONÍVEL"
+		}
 	]
 }

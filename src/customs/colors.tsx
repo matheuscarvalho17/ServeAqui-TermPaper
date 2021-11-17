@@ -6,6 +6,9 @@ const colors = {
 	opacity_primary: 'rgba(233, 120, 54, 0.27)',
 	//texts
 	price: '#0e960e',
+	avaliable: '#0c860c',
+	notAvaliable: '#d60909',
+
 	text_light: '#F3F9FF',
 	text_dark: '#4E2A00',
 	//backgrounds

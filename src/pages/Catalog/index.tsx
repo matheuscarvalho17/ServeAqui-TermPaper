@@ -1,17 +1,14 @@
 import api from '../../services/api';
-import colors from '../../customs/colors';
+import SignIn from '../../components/SignIn';
 import React, {useState, useEffect} from 'react';
 import ModalIcon from '../../components/ModalIcon';
-import {Container, ScrollContainer} from './styled';
 import CallWaiter from '../../components/CallWaiter';
 import BannerFrame from '../../components/BannerFrame';
-import {setFontSizeValue} from '../../util/ajustScreen';
 import FloatingCart from '../../components/FloatingCart';
 import MessageFrame from '../../components/MessageFrame';
+import {Container, ScrollContainer, styles} from './styled';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
-import SignIn from '../../components/SignIn';
-import {styles} from '../ProductDetails/styled';
 
 const Catalog: React.FC = () => {
 	//All constants declarations
@@ -60,13 +57,7 @@ const Catalog: React.FC = () => {
 			<Container>
 				<ScrollContainer showsVerticalScrollIndicator={false}>
 					<BannerFrame
-						icon={
-							<FontistoIcon
-								name="person"
-								color={colors.text_light}
-								size={setFontSizeValue(12)}
-							/>
-						}
+						icon={<FontistoIcon name="person" style={styles.bannerIcon} />}
 						message={
 							'Com dúvidas no que pedir? Chame o garçom! Ele poderá te ajudar nesta dúvida cruel.'
 						}

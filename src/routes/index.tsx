@@ -3,7 +3,7 @@ import Auth from './auth.route';
 import React, {useState} from 'react';
 
 const Routes: React.FC = () => {
-	const [signIn, setSignIn] = useState<boolean>(true);
+	const [signIn, setSignIn] = useState<boolean>(false);
 
 	return signIn ? <App /> : <Auth />;
 };
