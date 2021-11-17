@@ -10,6 +10,7 @@ import FloatingCart from '../../components/FloatingCart';
 import MessageFrame from '../../components/MessageFrame';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
+import SignIn from '../../components/SignIn';
 
 const Catalog: React.FC = () => {
 	//All constants declarations
@@ -18,6 +19,7 @@ const Catalog: React.FC = () => {
 	const [prodIceds, setProdIceds] = useState<Array<Data>>([]);
 	const [prodMeals, setProdMeals] = useState<Array<Data>>([]);
 	const [prodDrinks, setProdDrinks] = useState<Array<Data>>([]);
+	const [openModalLogin, setOpenModalLogin] = useState<boolean>(true);
 
 	//All functions
 	async function loadProducts() {
@@ -110,6 +112,12 @@ const Catalog: React.FC = () => {
 						style={{color: colors.text_dark, fontSize: setFontSizeValue(14)}}
 					/>
 				}
+			/>
+			<SignIn
+				visible={openModalLogin}
+				onPressBack={() => {
+					setOpenModalLogin(false);
+				}}
 			/>
 		</>
 	);

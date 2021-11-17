@@ -21,22 +21,24 @@ const StackHeader = ({scene, navigation}) => {
 			)}
 			<Appbar.Content title={title} titleStyle={styles.title} />
 			{!navigation.canGoBack() ? (
-				<Appbar.Action
-					icon="magnify"
-					color={colors.text_light}
-					size={setFontSizeValue(6)}
-					onPress={() => console.log('Pesquisar produto')}
-				/>
+				<>
+					<Appbar.Action
+						icon="magnify"
+						color={colors.text_light}
+						size={setFontSizeValue(6)}
+						onPress={() => console.log('Pesquisar produto')}
+					/>
+					<Appbar.Action
+						onPress={() => {}}
+						icon="dots-vertical"
+						color={colors.text_light}
+						size={setFontSizeValue(6)}
+						onLongPress={() => {}}
+					/>
+				</>
 			) : (
 				<></>
 			)}
-			<Appbar.Action
-				onPress={() => {}}
-				icon="dots-vertical"
-				color={colors.text_light}
-				size={setFontSizeValue(6)}
-				onLongPress={() => navigation.navigate('SignIn')}
-			/>
 		</Appbar.Header>
 	);
 };

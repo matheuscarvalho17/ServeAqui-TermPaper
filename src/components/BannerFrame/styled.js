@@ -7,7 +7,7 @@ import {
 } from '../../util/ajustScreen';
 
 export const Container = styled.View`
-	width: ${setWidthValue(170)}px;
+	width: 100%;
 	height: ${setHeightValue(30)}px;
 	margin-top: ${setHeightValue(4)}px;
 	background-color: ${colors.primary};
