@@ -65,23 +65,10 @@ const Catalog: React.FC = () => {
 					<ProductsFrame
 						productsList={products}
 						productsType={'Feitos para você!'}
-						onPressContainer={() => {}}
 					/>
-					<ProductsFrame
-						productsList={prodMeals}
-						productsType={'Refeições'}
-						onPressContainer={() => {}}
-					/>
-					<ProductsFrame
-						productsList={prodDrinks}
-						productsType={'Bebidas'}
-						onPressContainer={() => {}}
-					/>
-					<ProductsFrame
-						productsList={prodIceds}
-						productsType={'Gelados'}
-						onPressContainer={() => {}}
-					/>
+					<ProductsFrame productsList={prodMeals} productsType={'Refeições'} />
+					<ProductsFrame productsList={prodDrinks} productsType={'Bebidas'} />
+					<ProductsFrame productsList={prodIceds} productsType={'Gelados'} />
 					<MessageFrame
 						message={'Parece que já te mostramos todas as comidinhas!'}
 					/>

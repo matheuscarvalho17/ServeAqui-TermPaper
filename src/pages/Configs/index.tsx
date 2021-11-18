@@ -12,6 +12,7 @@ import {
 	ActionButton,
 	Informations,
 	LeftContainer,
+	ConfirmButton,
 	RightContainer,
 	BannerContainer,
 	StatusContainer,
@@ -87,6 +88,10 @@ const Configs: React.FC = () => {
 					</ActionButton>
 				</RightContainer>
 			</Informations>
+			<ConfirmButton onPress={() => console.log('Confirmar')}>
+				<TextButton>{'Confirmar alterações'}</TextButton>
+				<Icon name="content-save" style={styles.icon} />
+			</ConfirmButton>
 		</Container>
 	);
 };

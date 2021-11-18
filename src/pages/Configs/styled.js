@@ -69,6 +69,17 @@ export const ActionButton = styled.TouchableOpacity`
 	height: ${setHeightValue(13)}px;
 	border-radius: ${setHeightValue(2)}px;
 `;
+export const ConfirmButton = styled.TouchableOpacity`
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background: ${colors.primary};
+	width: ${setWidthValue(70)}px;
+	padding: ${setWidthValue(3)}px;
+	height: ${setHeightValue(13)}px;
+	margin-top: ${setHeightValue(13)}px;
+	border-radius: ${setHeightValue(2)}px;
+`;
 export const TextButton = styled.Text`
 	font-weight: bold;
 	color: ${colors.text_light};

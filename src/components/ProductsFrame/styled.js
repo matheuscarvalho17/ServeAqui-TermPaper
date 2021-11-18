@@ -1,6 +1,6 @@
-import {FlatList} from 'react-native';
 import styled from 'styled-components';
 import colors from '../../customs/colors';
+import {FlatList, StyleSheet} from 'react-native';
 import {
 	setWidthValue,
 	setHeightValue,
@@ -24,7 +24,7 @@ export const ProductContainer = styled.View`
 	border-bottom-width: ${setHeightValue(0.5)}px;
 `;
 
-export const ProductHeader = styled.TouchableOpacity`
+export const ProductHeader = styled.View`
 	width: 100%;
 	height: 12%;
 	flex-direction: row;
@@ -88,3 +88,15 @@ export const ProductTitle = styled.Text`
 	font-size: ${setFontSizeValue(3.3)}px;
 	letter-spacing: ${setWidthValue(0.3)}px;
 `;
+
+export const styles = StyleSheet.create({
+	headerIcon: {
+		color: colors.text_dark,
+		fontSize: setFontSizeValue(7),
+		marginRight: setWidthValue(2),
+	},
+	icon: {
+		color: colors.text_dark,
+		fontSize: setFontSizeValue(10),
+	},
+});

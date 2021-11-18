@@ -1,6 +1,6 @@
 import React from 'react';
 import Configs from '../pages/Configs';
-import StackHeader from '../util/stackHeader';
+import StackHeaderAuth from '../util/stackHeaderAuth';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -11,9 +11,7 @@ const AuthRoute: React.FC = () => {
 		<NavigationContainer>
 			<Stack.Navigator
 				screenOptions={{
-					header: ({scene, navigation}) => (
-						<StackHeader scene={scene} navigation={navigation} />
-					),
+					header: ({scene}) => <StackHeaderAuth scene={scene} />,
 				}}>
 				<Stack.Screen
 					name="Configs"

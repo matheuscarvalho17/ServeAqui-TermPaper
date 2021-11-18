@@ -32,12 +32,12 @@ import {
 
 const ProductDetails: React.FC = () => {
 	//All constants declarations
+	const route: RouteProp<{params: {idProduct: number}}, 'params'> = useRoute();
+	const {idProduct} = route.params;
 	const dispatch = useDispatch();
 	const [product, setProduct] = useState<Data>();
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const products = useSelector(({cart}: {cart: any}) => cart);
-	const route: RouteProp<{params: {idProduct: number}}, 'params'> = useRoute();
-	const {idProduct} = route.params;
 
 	//All functions
 	async function loadProduct() {

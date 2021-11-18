@@ -6,8 +6,8 @@ import formatValues from '../../util/formatValues';
 import {useNavigation} from '@react-navigation/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import * as CartActions from '../../store/modules/cart/actions';
-import {setWidthValue, setFontSizeValue} from '../../util/ajustScreen';
 import {
+	styles,
 	Product,
 	ProductList,
 	ProductImage,
@@ -32,13 +32,11 @@ interface Data {
 interface IProductsFrame {
 	productsType: string;
 	productsList: Array<Data>;
-	onPressContainer: Function;
 }
 
 const ProductsFrame: React.FC<IProductsFrame> = ({
 	productsType,
 	productsList,
-	onPressContainer,
 }) => {
 	//All constants declarations
 	const dispatch = useDispatch();
@@ -51,21 +49,16 @@ const ProductsFrame: React.FC<IProductsFrame> = ({
 
 	return (
 		<ProductContainer>
-			<ProductHeader onPress={onPressContainer}>
+			<ProductHeader>
 				<ProductHeaderTitle>{productsType}</ProductHeaderTitle>
-				<FeatherIcon
-					name="chevron-right"
-					color={colors.text_dark}
-					size={setFontSizeValue(7)}
-					style={{marginRight: setWidthValue(2)}}
-				/>
+				<FeatherIcon name="chevron-down" style={styles.headerIcon} />
 			</ProductHeader>
 			<ProductList
 				horizontal={true}
 				data={productsList}
-				keyExtractor={(item: Data) => String(item.id)}
 				ListEmptyComponent={<EmptyFrame />}
 				showsHorizontalScrollIndicator={false}
+				keyExtractor={(item: Data) => String(item.id)}
 				ListFooterComponentStyle={{
 					height: 80,
 				}}
@@ -76,11 +69,7 @@ const ProductsFrame: React.FC<IProductsFrame> = ({
 						}>
 						<ProductImage source={{uri: item.image_url}} />
 						<ProductButton onPress={() => handlerAddToCart(item.id)}>
-							<FeatherIcon
-								name="plus-circle"
-								color={colors.text_dark}
-								size={setFontSizeValue(10)}
-							/>
+							<FeatherIcon name="plus-circle" style={styles.icon} />
 						</ProductButton>
 						<ProductPrice>{formatValues(item.price)}</ProductPrice>
 						<ProductTitle>{item.title}</ProductTitle>

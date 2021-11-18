@@ -15,8 +15,8 @@ export const ScrollContainer = styled(ScrollView).attrs({})`
 
 export const styles = StyleSheet.create({
 	icon: {
-		color: colors.text_light,
-		fontSize: setFontSizeValue(5),
+		color: colors.text_dark,
+		fontSize: setFontSizeValue(15),
 	},
 	bannerIcon: {
 		color: colors.text_light,
