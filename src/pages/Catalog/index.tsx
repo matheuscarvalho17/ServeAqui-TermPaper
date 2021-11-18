@@ -1,5 +1,4 @@
 import api from '../../services/api';
-import SignIn from '../../components/SignIn';
 import React, {useState, useEffect} from 'react';
 import ModalIcon from '../../components/ModalIcon';
 import CallWaiter from '../../components/CallWaiter';
@@ -17,7 +16,6 @@ const Catalog: React.FC = () => {
 	const [prodIceds, setProdIceds] = useState<Array<Data>>([]);
 	const [prodMeals, setProdMeals] = useState<Array<Data>>([]);
 	const [prodDrinks, setProdDrinks] = useState<Array<Data>>([]);
-	const [openModalLogin, setOpenModalLogin] = useState<boolean>(true);
 
 	//All functions
 	async function loadProducts() {
@@ -86,12 +84,6 @@ const Catalog: React.FC = () => {
 				OkOnPress={() => console.log('Chamar garçom')}
 				text={'Aguarde um instante. Um garçom foi chamado à sua mesa!'}
 				icon={<FontistoIcon name="person" style={styles.icon} />}
-			/>
-			<SignIn
-				visible={openModalLogin}
-				onPressBack={() => {
-					setOpenModalLogin(false);
-				}}
 			/>
 		</>
 	);

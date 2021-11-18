@@ -1,7 +1,6 @@
 import React from 'react';
 import EmptyFrame from '../EmptyFrame';
 import {useDispatch} from 'react-redux';
-import colors from '../../customs/colors';
 import formatValues from '../../util/formatValues';
 import {useNavigation} from '@react-navigation/native';
 import FeatherIcon from 'react-native-vector-icons/Feather';

@@ -1,10 +1,11 @@
 import api from '../../services/api';
 import React, {useEffect, useState} from 'react';
 import BannerFrame from '../../components/BannerFrame';
+import ModalOptions from '../../components/ModalOptions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
-	styles,
 	Title,
+	styles,
 	Container,
 	Avaliable,
 	TextButton,
@@ -28,6 +29,8 @@ const Configs: React.FC = () => {
 	const [tables, setTables] = useState<Array<Data>>([]);
 	const [actualTable, setActualTable] = useState<String>('');
 	const [actualStatus, setActualStatus] = useState<String>('');
+	const [openModalTable, setOpenModalTable] = useState<boolean>(false);
+	const [openModalStatus, setOpenModalStatus] = useState<boolean>(false);
 
 	//All functions
 	async function loadTables() {
@@ -53,46 +56,64 @@ const Configs: React.FC = () => {
 	}, [tables]);
 
 	return (
-		<Container>
-			<BannerContainer>
-				<BannerFrame
-					icon={<Icon name="tablet-android" style={styles.bannerIcon} />}
-					message={
-						'Aqui você pode configurar a mesa onde o dispositivo se encontra'
-					}
-				/>
-			</BannerContainer>
-			<Informations>
-				<LeftContainer>
-					<StatusContainer>
-						<Title>{'Mesa selecionada:'}</Title>
-						<Avaliable>{actualTable}</Avaliable>
-					</StatusContainer>
-					<StatusContainer>
-						<Title>{`Status da Mesa:`}</Title>
-						{actualStatus == 'DISPONÍVEL' ? (
-							<Avaliable>{'DISPONÍVEL'}</Avaliable>
-						) : (
-							<NotAvaliable>{'OCUPADA'}</NotAvaliable>
-						)}
-					</StatusContainer>
-				</LeftContainer>
-				<RightContainer>
-					<ActionButton onPress={() => setActualTable(tables[3].id)}>
-						<TextButton>{'Alterar mesa'}</TextButton>
-						<Icon name="pencil" style={styles.icon} />
-					</ActionButton>
-					<ActionButton onPress={() => setActualStatus(tables[3].status)}>
-						<TextButton>{'Alterar status'}</TextButton>
-						<Icon name="pencil" style={styles.icon} />
-					</ActionButton>
-				</RightContainer>
-			</Informations>
-			<ConfirmButton onPress={() => console.log('Confirmar')}>
-				<TextButton>{'Confirmar alterações'}</TextButton>
-				<Icon name="content-save" style={styles.icon} />
-			</ConfirmButton>
-		</Container>
+		<>
+			<Container>
+				<BannerContainer>
+					<BannerFrame
+						icon={<Icon name="tablet-android" style={styles.bannerIcon} />}
+						message={
+							'Aqui você pode configurar a mesa onde o dispositivo se encontra'
+						}
+					/>
+				</BannerContainer>
+				<Informations>
+					<LeftContainer>
+						<StatusContainer>
+							<Title>{'Mesa selecionada:'}</Title>
+							<Avaliable>{actualTable}</Avaliable>
+						</StatusContainer>
+						<StatusContainer>
+							<Title>{`Status da mesa:`}</Title>
+							{actualStatus == 'DISPONÍVEL' ? (
+								<Avaliable>{'DISPONÍVEL'}</Avaliable>
+							) : (
+								<NotAvaliable>{'OCUPADA'}</NotAvaliable>
+							)}
+						</StatusContainer>
+					</LeftContainer>
+					<RightContainer>
+						<ActionButton onPress={() => setOpenModalTable(true)}>
+							<TextButton>{'Alterar mesa'}</TextButton>
+							<Icon name="pencil" style={styles.icon} />
+						</ActionButton>
+						<ActionButton onPress={() => setOpenModalStatus(true)}>
+							<TextButton>{'Alterar status'}</TextButton>
+							<Icon name="pencil" style={styles.icon} />
+						</ActionButton>
+					</RightContainer>
+				</Informations>
+				<ConfirmButton onPress={() => console.log('Confirmar')}>
+					<TextButton>{'Confirmar alterações'}</TextButton>
+					<Icon name="content-save" style={styles.icon} />
+				</ConfirmButton>
+			</Container>
+			<ModalOptions
+				title={'Alterar status'}
+				visible={openModalStatus}
+				setVisible={setOpenModalStatus}
+				OkOnPress={() => {
+					setActualStatus(tables[3].status), console.log('Alterado status');
+				}}
+			/>
+			<ModalOptions
+				title={'Alterado mesa'}
+				visible={openModalTable}
+				setVisible={setOpenModalTable}
+				OkOnPress={() => {
+					setActualTable(tables[3].id), console.log('Alterada mesa');
+				}}
+			/>
+		</>
 	);
 };
 

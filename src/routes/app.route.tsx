@@ -1,5 +1,6 @@
 import React from 'react';
 import Cart from '../pages/Cart';
+import SignIn from '../pages/SignIn';
 import Catalog from '../pages/Catalog';
 import StackHeader from '../util/stackHeader';
 import ProductDetails from '../pages/ProductDetails';
@@ -31,6 +32,11 @@ const AppRoute: React.FC = () => {
 					name="ProductDetails"
 					component={ProductDetails}
 					options={{headerTitle: 'Detalhes do produto'}}
+				/>
+				<Stack.Screen
+					name="SignIn"
+					component={SignIn}
+					options={{headerTitle: 'Área de login'}}
 				/>
 			</Stack.Navigator>
 		</NavigationContainer>

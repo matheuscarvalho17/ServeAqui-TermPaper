@@ -7,16 +7,16 @@ import {
 } from '../../util/ajustScreen';
 
 export const Container = styled.SafeAreaView`
-	width: 100%;
+	flex: 1;
 	align-items: center;
 	background-color: white;
 	padding: ${setWidthValue(3)}px;
-	height: ${setHeightValue(122)}px;
-	border-radius: ${setWidthValue(5)}px;
-	background: ${colors.background_initial};
+	background-color: ${colors.background_initial};
 `;
 export const Title = styled.Text`
 	font-weight: bold;
+	margin-top: ${setHeightValue(10)}px;
+	margin-bottom: ${setHeightValue(10)}px;
 	color: ${colors.text_dark};
 	font-size: ${setFontSizeValue(5.5)}px;
 `;
@@ -46,7 +46,9 @@ export const ButtonContainer = styled.View`
 	width: 90%;
 	align-items: center;
 	flex-direction: row;
+	position: absolute;
 	justify-content: space-around;
+	bottom: ${setHeightValue(5)}px;
 	height: ${setHeightValue(25)}px;
 `;
 export const Button = styled.TouchableOpacity`

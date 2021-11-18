@@ -33,7 +33,7 @@ const StackHeader = ({scene, navigation}) => {
 						icon="dots-vertical"
 						color={colors.text_light}
 						size={setFontSizeValue(6)}
-						onLongPress={() => {}}
+						onLongPress={() => navigation.navigate('SignIn')}
 					/>
 				</>
 			) : (
