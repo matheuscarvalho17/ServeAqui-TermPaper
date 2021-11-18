@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {StyleSheet} from 'react-native';
 import colors from '../../customs/colors';
 import {
 	setWidthValue,
@@ -66,3 +67,10 @@ export const TextButton = styled.Text`
 	font-size: ${setFontSizeValue(4.5)}px;
 	letter-spacing: ${setWidthValue(0.2)}px;
 `;
+
+export const styles = StyleSheet.create({
+	bannerIcon: {
+		color: colors.text_light,
+		fontSize: setFontSizeValue(12),
+	},
+});

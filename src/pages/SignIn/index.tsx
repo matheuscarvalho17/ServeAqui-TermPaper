@@ -1,11 +1,10 @@
 import React from 'react';
-import colors from '../../customs/colors';
 import BannerFrame from '../../components/BannerFrame';
 import {useNavigation} from '@react-navigation/native';
-import {setFontSizeValue} from '../../util/ajustScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
 	Title,
+	styles,
 	Button,
 	Container,
 	TextInput,
@@ -23,11 +22,7 @@ const SignIn: React.FC = () => {
 		<Container>
 			<BannerFrame
 				icon={
-					<MaterialCommunityIcons
-						name="lock-alert"
-						color={colors.text_light}
-						size={setFontSizeValue(12)}
-					/>
+					<MaterialCommunityIcons name="lock-alert" style={styles.bannerIcon} />
 				}
 				message={'Tela de login restrita aos funcionários do estabelecimento!'}
 			/>

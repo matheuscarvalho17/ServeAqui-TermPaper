@@ -8,6 +8,8 @@ import MessageFrame from '../../components/MessageFrame';
 import {Container, ScrollContainer, styles} from './styled';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
+import LottieView from 'lottie-react-native';
+import EmptyFrame from '../../customs/animations/EmptyFrame.json';
 
 const Catalog: React.FC = () => {
 	//All constants declarations
@@ -68,7 +70,10 @@ const Catalog: React.FC = () => {
 					<ProductsFrame productsList={prodDrinks} productsType={'Bebidas'} />
 					<ProductsFrame productsList={prodIceds} productsType={'Gelados'} />
 					<MessageFrame
-						message={'Parece que já te mostramos todas as comidinhas!'}
+						animation={
+							<LottieView source={EmptyFrame} resizeMode="contain" autoPlay />
+						}
+						message={'Parece que já te mostramos todas as comidinhas...'}
 					/>
 				</ScrollContainer>
 				<CallWaiter

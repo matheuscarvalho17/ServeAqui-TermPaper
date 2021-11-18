@@ -1,16 +1,26 @@
 import React from 'react';
-import FeatherIcon from 'react-native-vector-icons/Feather';
-import {MessageText, MessageContainer} from './styled';
+import {
+	MessageText,
+	LeftContainer,
+	FrameContainer,
+	RightContainer,
+	MessageContainer,
+} from './styled';
 
 interface IMessage {
-	icon?: string;
 	message: string;
+	animation: React.ReactNode;
 }
 
-const MessageFrame: React.FC<IMessage> = ({icon, message}) => {
+const MessageFrame: React.FC<IMessage> = ({animation, message}) => {
 	return (
 		<MessageContainer>
-			<MessageText>{message}</MessageText>
+			<LeftContainer>
+				<FrameContainer>{animation}</FrameContainer>
+			</LeftContainer>
+			<RightContainer>
+				<MessageText>{message}</MessageText>
+			</RightContainer>
 		</MessageContainer>
 	);
 };
