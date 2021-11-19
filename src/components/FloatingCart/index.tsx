@@ -1,11 +1,15 @@
 import React, {useMemo} from 'react';
 import {useSelector} from 'react-redux';
-import colors from '../../customs/colors';
 import formatValues from '../../util/formatValues';
 import {useNavigation} from '@react-navigation/native';
-import {setFontSizeValue} from '../../util/ajustScreen';
 import FeatherIcon from 'react-native-vector-icons/Feather';
-import {Container, CartButton, CartTotalPrice, CartButtonText} from './styled';
+import {
+	styles,
+	Container,
+	CartButton,
+	CartTotalPrice,
+	CartButtonText,
+} from './styled';
 
 const FloatingCart: React.FC = () => {
 	//All constants declarations
@@ -25,20 +29,12 @@ const FloatingCart: React.FC = () => {
 	return (
 		<Container>
 			<CartButton onPress={() => navigation.navigate('Cart')}>
-				<FeatherIcon
-					name="shopping-cart"
-					size={setFontSizeValue(6)}
-					color={colors.text_light}
-				/>
+				<FeatherIcon name="shopping-cart" style={styles.icon} />
 				<CartButtonText>
 					{cartSize} {cartSize == 1 ? 'item' : 'itens'}
 				</CartButtonText>
 				<CartTotalPrice>{cartTotal}</CartTotalPrice>
-				<FeatherIcon
-					name="chevron-right"
-					size={setFontSizeValue(6)}
-					color={colors.text_light}
-				/>
+				<FeatherIcon name="chevron-right" style={styles.icon} />
 			</CartButton>
 		</Container>
 	);

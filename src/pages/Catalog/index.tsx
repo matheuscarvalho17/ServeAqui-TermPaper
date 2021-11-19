@@ -1,18 +1,21 @@
 import api from '../../services/api';
+import LottieView from 'lottie-react-native';
 import React, {useState, useEffect} from 'react';
 import ModalIcon from '../../components/ModalIcon';
+import CloseOrder from '../../components/CloseOrder';
 import CallWaiter from '../../components/CallWaiter';
 import BannerFrame from '../../components/BannerFrame';
+import {useNavigation} from '@react-navigation/native';
 import FloatingCart from '../../components/FloatingCart';
 import MessageFrame from '../../components/MessageFrame';
 import {Container, ScrollContainer, styles} from './styled';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
-import {ProductsFrame, Data} from '../../components/ProductsFrame';
-import LottieView from 'lottie-react-native';
 import EmptyFrame from '../../customs/animations/EmptyFrame.json';
+import {ProductsFrame, Data} from '../../components/ProductsFrame';
 
 const Catalog: React.FC = () => {
 	//All constants declarations
+	const navigation = useNavigation();
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [products, setProducts] = useState<Array<Data>>([]);
 	const [prodIceds, setProdIceds] = useState<Array<Data>>([]);
@@ -81,6 +84,7 @@ const Catalog: React.FC = () => {
 						setOpenModal(true);
 					}}
 				/>
+				<CloseOrder onPress={() => navigation.navigate('Order')} />
 				<FloatingCart />
 			</Container>
 			<ModalIcon

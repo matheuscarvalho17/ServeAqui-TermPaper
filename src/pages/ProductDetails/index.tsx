@@ -8,6 +8,8 @@ import {Data} from '../../components/ProductsFrame';
 import EmptyFrame from '../../components/EmptyFrame';
 import {useSelector, useDispatch} from 'react-redux';
 import CallWaiter from '../../components/CallWaiter';
+import CloseOrder from '../../components/CloseOrder';
+import {useNavigation} from '@react-navigation/native';
 import CustomFrame from '../../components/CustomFrame';
 import {setFontSizeValue} from '../../util/ajustScreen';
 import FloatingCart from '../../components/FloatingCart';
@@ -32,6 +34,7 @@ import {
 
 const ProductDetails: React.FC = () => {
 	//All constants declarations
+	const navigation = useNavigation();
 	const route: RouteProp<{params: {idProduct: number}}, 'params'> = useRoute();
 	const {idProduct} = route.params;
 	const dispatch = useDispatch();
@@ -115,24 +118,20 @@ const ProductDetails: React.FC = () => {
 				) : (
 					<EmptyFrame />
 				)}
-				<FloatingCart />
 				<CallWaiter
 					onPress={() => {
 						setOpenModal(true);
 					}}
 				/>
+				<CloseOrder onPress={() => navigation.navigate('Order')} />
+				<FloatingCart />
 			</Container>
 			<ModalIcon
 				visible={openModal}
 				setVisible={setOpenModal}
 				OkOnPress={() => console.log('Chamar garçom')}
 				text={'Aguarde um instante. Um garçom foi chamado à sua mesa!'}
-				icon={
-					<FontistoIcon
-						name="person"
-						style={{color: colors.text_dark, fontSize: setFontSizeValue(14)}}
-					/>
-				}
+				icon={<FontistoIcon name="person" style={styles.bannerIcon} />}
 			/>
 		</>
 	);

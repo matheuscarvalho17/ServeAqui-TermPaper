@@ -18,6 +18,7 @@ import {
 	BannerContainer,
 	StatusContainer,
 } from './styled';
+import axios from 'axios';
 
 interface Data {
 	id: string;
@@ -40,6 +41,15 @@ const Configs: React.FC = () => {
 			console.log(responseTables.data);
 		} catch (err) {
 			console.log('responseTables', err);
+		}
+	}
+
+	async function chamadaApi() {
+		try {
+			const response = await api.get('/port');
+			console.log(response.data);
+		} catch (err) {
+			console.log('chamadaApi', err);
 		}
 	}
 
@@ -92,7 +102,7 @@ const Configs: React.FC = () => {
 						</ActionButton>
 					</RightContainer>
 				</Informations>
-				<ConfirmButton onPress={() => console.log('Confirmar')}>
+				<ConfirmButton onPress={() => chamadaApi()}>
 					<TextButton>{'Confirmar alterações'}</TextButton>
 					<Icon name="content-save" style={styles.icon} />
 				</ConfirmButton>

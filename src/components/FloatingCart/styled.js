@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {StyleSheet} from 'react-native';
 import colors from '../../customs/colors';
 import {
 	setHeightValue,
@@ -11,7 +12,7 @@ export const Container = styled.View`
 	align-items: center;
 	flex-direction: row;
 	left: ${setWidthValue(5)}px;
-	width: ${setWidthValue(135)}px;
+	width: ${setWidthValue(120)}px;
 	justify-content: space-between;
 	background: ${colors.secondary};
 	bottom: ${setHeightValue(3.5)}px;
@@ -40,3 +41,10 @@ export const CartButtonText = styled.Text`
 	margin-left: ${setWidthValue(3)}px;
 	font-size: ${setFontSizeValue(4)}px;
 `;
+
+export const styles = StyleSheet.create({
+	icon: {
+		color: colors.text_light,
+		fontSize: setFontSizeValue(6),
+	},
+});

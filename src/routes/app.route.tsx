@@ -1,5 +1,6 @@
 import React from 'react';
 import Cart from '../pages/Cart';
+import Order from '../pages/Order';
 import SignIn from '../pages/SignIn';
 import Catalog from '../pages/Catalog';
 import StackHeader from '../util/stackHeader';
@@ -27,6 +28,11 @@ const AppRoute: React.FC = () => {
 					name="Cart"
 					component={Cart}
 					options={{headerTitle: 'Carrinho'}}
+				/>
+				<Stack.Screen
+					name="Order"
+					component={Order}
+					options={{headerTitle: 'Pedidos'}}
 				/>
 				<Stack.Screen
 					name="ProductDetails"

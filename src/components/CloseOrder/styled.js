@@ -9,13 +9,12 @@ import {
 
 export const Container = styled.View`
 	position: absolute;
-	right: ${setWidthValue(5)}px;
+	right: ${setWidthValue(30)}px;
 	bottom: ${setHeightValue(2)}px;
 	padding: ${setHeightValue(4)}px;
 	background-color: ${colors.primary};
 	border-radius: ${setHeightValue(50)}px;
 `;
-
 export const Button = styled.TouchableOpacity`
 	align-items: center;
 	justify-content: center;
