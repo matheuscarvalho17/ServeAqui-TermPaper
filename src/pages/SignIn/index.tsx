@@ -1,7 +1,7 @@
 import React from 'react';
 import BannerFrame from '../../components/BannerFrame';
 import {useNavigation} from '@react-navigation/native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {
 	Title,
 	styles,
@@ -12,18 +12,31 @@ import {
 	InputContainer,
 	ButtonContainer,
 } from './styled';
+import api from '../../services/api';
 
 const SignIn: React.FC = () => {
 	const navigation = useNavigation();
 	const [text, setText] = React.useState('');
 	const [password, setPassword] = React.useState('');
 
+	//functions
+	async function sendForm(credential: string, password: string) {
+		try {
+			const data = {
+				credential: credential,
+				password: password,
+			};
+			console.log(data);
+			const response = await api.post('/users/login', data);
+		} catch (err) {
+			console.log('sendForm', err);
+		}
+	}
+
 	return (
 		<Container>
 			<BannerFrame
-				icon={
-					<MaterialCommunityIcons name="lock-alert" style={styles.bannerIcon} />
-				}
+				icon={<Icon name="lock-alert" style={styles.bannerIcon} />}
 				message={'Tela de login restrita aos funcionários do estabelecimento!'}
 			/>
 			<Title>{'Preencha os campos abaixo para realizar o login'}</Title>
@@ -45,7 +58,7 @@ const SignIn: React.FC = () => {
 				<Button onPress={() => navigation.goBack()}>
 					<TextButton>{'Voltar'}</TextButton>
 				</Button>
-				<Button onPress={() => console.log('Validar Login')}>
+				<Button onPress={() => sendForm(text, password)}>
 					<TextButton>{'Entrar'}</TextButton>
 				</Button>
 			</ButtonContainer>
