@@ -1,4 +1,5 @@
 import React from 'react';
+import api from '../../services/api';
 import BannerFrame from '../../components/BannerFrame';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -12,7 +13,6 @@ import {
 	InputContainer,
 	ButtonContainer,
 } from './styled';
-import api from '../../services/api';
 
 const SignIn: React.FC = () => {
 	const navigation = useNavigation();

@@ -1,23 +1,94 @@
-import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import React, {useState} from 'react';
+import EmptyCart from '../../components/EmptyCart';
+import formatValues from '../../util/formatValues';
+import {Data} from '../../components/ProductsFrame';
+import Octicons from 'react-native-vector-icons/Octicons';
 import {
-	Title,
 	styles,
-	Button,
+	Product,
 	Container,
-	TextInput,
-	TextButton,
-	InputContainer,
-	ButtonContainer,
+	OrderTitle,
+	ProductList,
+	ProductImage,
+	ProductTitle,
+	ProductPrice,
+	FinishButton,
+	OrderContainer,
+	TotalContainer,
+	ProductQuantity,
+	ObservationText,
+	ProductContainer,
+	FinishButtonText,
+	ProductSinglePrice,
+	ProductPriceContainer,
+	ProductTitleContainer,
+	TotalProductsContainer,
 } from './styled';
+import {useSelector} from 'react-redux';
+import ModalIcon from '../../components/ModalIcon';
 
 const Order: React.FC = () => {
-	const navigation = useNavigation();
-	const [text, setText] = React.useState('');
-	const [password, setPassword] = React.useState('');
+	//All constants declarations
+	const [openModal, setOpenModal] = useState<boolean>(false);
+	const products = useSelector(({cart}: {cart: any}) => cart);
+	const observation: string = 'Não colocar muito sal.';
 
-	return <Container></Container>;
+	return (
+		<>
+			<Container>
+				<ProductContainer>
+					<OrderContainer>
+						<OrderTitle>{'Pedido #0001'}</OrderTitle>
+					</OrderContainer>
+					<ProductList
+						data={products}
+						keyExtractor={(item: Data) => String(item.id)}
+						// ListEmptyComponent={<EmptyCart />}
+						ListFooterComponentStyle={{
+							height: 80,
+						}}
+						renderItem={({item}: {item: Data}) => (
+							<Product>
+								<ProductImage source={{uri: item.image_url}} />
+								<ProductTitleContainer>
+									<ProductTitle>{item.title}</ProductTitle>
+									<ProductPriceContainer>
+										<ProductSinglePrice>
+											{formatValues(item.price)}
+										</ProductSinglePrice>
+										<TotalContainer>
+											<ProductQuantity>{`${item.amount}x`}</ProductQuantity>
+											<ProductPrice>
+												{formatValues(item.price * item.amount)}
+											</ProductPrice>
+										</TotalContainer>
+										{item.editable && (
+											<ObservationText>{observation}</ObservationText>
+										)}
+									</ProductPriceContainer>
+								</ProductTitleContainer>
+							</Product>
+						)}
+					/>
+					<TotalProductsContainer>
+						<FinishButton onPress={() => setOpenModal(true)}>
+							<FinishButtonText>{'Encerrar conta'}</FinishButtonText>
+						</FinishButton>
+					</TotalProductsContainer>
+				</ProductContainer>
+			</Container>
+			<ModalIcon
+				text={
+					'Você deseja mesmo encerrar sua conta? Esta ação não poderá ser desfeita!'
+				}
+				visible={openModal}
+				OkCancel={true}
+				OkOnPress={() => console.log('Conta encerrada')}
+				setVisible={setOpenModal}
+				icon={<Octicons name="list-ordered" style={styles.modalIcon} />}
+			/>
+		</>
+	);
 };
 
 export default Order;

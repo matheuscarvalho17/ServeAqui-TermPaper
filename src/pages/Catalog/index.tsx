@@ -31,19 +31,22 @@ const Catalog: React.FC = () => {
 			console.log('responseProducts', err);
 		}
 		try {
-			const responseMeals = await api.get('/products/foods');
+			const responseMeals = await api.get('/products?type=food');
+			// const responseMeals = await api.get('/products/foods');
 			setProdMeals(responseMeals.data);
 		} catch (err) {
 			console.log('responseMeals', err);
 		}
 		try {
-			const responseDrinks = await api.get('/products/drinks');
+			const responseDrinks = await api.get('/products?type=drink');
+			// const responseDrinks = await api.get('/products/drinks');
 			setProdDrinks(responseDrinks.data);
 		} catch (err) {
 			console.log('responseDrinks', err);
 		}
 		try {
-			const responseIceds = await api.get('/products/iceds');
+			const responseIceds = await api.get('/products?type=iced');
+			// const responseIceds = await api.get('/products/iceds');
 			setProdIceds(responseIceds.data);
 		} catch (err) {
 			console.log('responseIceds', err);

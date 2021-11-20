@@ -36,6 +36,8 @@ const Cart: React.FC = () => {
 	//All constants declarations
 	const dispatch = useDispatch();
 	const products = useSelector(({cart}: {cart: any}) => cart);
+
+	//All Functions
 	const cartSize = useMemo(() => {
 		return products.length || 0;
 	}, [products]);

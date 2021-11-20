@@ -57,6 +57,7 @@ export const ProductTitleContainer = styled.View`
 	margin-top: ${setHeightValue(2)}px;
 `;
 export const ProductTitle = styled.Text`
+	font-weight: bold;
 	font-size: ${setFontSizeValue(3.5)}px;
 	letter-spacing: ${setWidthValue(0.3)}px;
 `;
