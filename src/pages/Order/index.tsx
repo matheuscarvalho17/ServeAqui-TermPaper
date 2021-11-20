@@ -26,10 +26,12 @@ import {
 } from './styled';
 import {useSelector} from 'react-redux';
 import ModalIcon from '../../components/ModalIcon';
+import EvaluateService from '../../components/EvaluateService';
 
 const Order: React.FC = () => {
 	//All constants declarations
 	const [openModal, setOpenModal] = useState<boolean>(false);
+	const [openEvaluate, setOpenEvaluate] = useState<boolean>(false);
 	const products = useSelector(({cart}: {cart: any}) => cart);
 	const observation: string = 'Não colocar muito sal.';
 
@@ -83,9 +85,14 @@ const Order: React.FC = () => {
 				}
 				visible={openModal}
 				OkCancel={true}
-				OkOnPress={() => console.log('Conta encerrada')}
+				OkOnPress={() => setOpenEvaluate(true)}
 				setVisible={setOpenModal}
 				icon={<Octicons name="list-ordered" style={styles.modalIcon} />}
+			/>
+			<EvaluateService
+				onPress={() => console.log('Avaliado')}
+				visible={openEvaluate}
+				setVisible={setOpenEvaluate}
 			/>
 		</>
 	);
