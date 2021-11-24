@@ -1,6 +1,6 @@
-import {FlatList} from 'react-native';
 import styled from 'styled-components';
 import colors from '../../customs/colors';
+import {StyleSheet, FlatList} from 'react-native';
 import {
 	setWidthValue,
 	setHeightValue,
@@ -139,3 +139,10 @@ export const FinishButtonText = styled.Text`
 	color: ${colors.text_dark};
 	font-size: ${setFontSizeValue(4)}px;
 `;
+
+export const styles = StyleSheet.create({
+	snackBar: {
+		height: setHeightValue(15),
+		marginBottom: setHeightValue(20),
+	},
+});

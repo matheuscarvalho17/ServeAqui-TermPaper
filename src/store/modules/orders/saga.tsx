@@ -17,7 +17,6 @@ function* addToOrder({
 		amountCart: amountOrder,
 		priceFormatted: formatValues(response.data.price),
 	};
-	console.log(data);
 	yield put(addOrderSuccess(data));
 }
 

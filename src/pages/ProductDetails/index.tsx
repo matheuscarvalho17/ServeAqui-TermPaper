@@ -123,6 +123,7 @@ const ProductDetails: React.FC = () => {
 					<EmptyFrame />
 				)}
 				<CallWaiter
+					idTable={1}
 					onPress={() => {
 						setOpenModal(true);
 					}}
@@ -132,8 +133,8 @@ const ProductDetails: React.FC = () => {
 			</Container>
 			<ModalIcon
 				visible={openModal}
+				OkOnPress={() => {}}
 				setVisible={setOpenModal}
-				OkOnPress={() => console.log('Chamar garçom')}
 				text={'Aguarde um instante. Um garçom foi chamado à sua mesa!'}
 				icon={<FontistoIcon name="person" style={styles.bannerIcon} />}
 			/>
