@@ -26,6 +26,7 @@ interface Data {
 	amount?: number;
 	editable?: boolean;
 	image_url?: string;
+	amountCart?: number;
 	description?: string;
 }
 interface IProductsFrame {
@@ -63,9 +64,9 @@ const ProductsFrame: React.FC<IProductsFrame> = ({
 				}}
 				renderItem={({item}: {item: Data}) => (
 					<Product
-						onPress={() =>
-							navigation.navigate('ProductDetails', {idProduct: item.id})
-						}>
+						onPress={() => {
+							navigation.navigate('ProductDetails', {idProduct: item.id});
+						}}>
 						<ProductImage source={{uri: item.image_url}} />
 						<ProductButton onPress={() => handlerAddToCart(item.id)}>
 							<FeatherIcon name="plus-circle" style={styles.icon} />

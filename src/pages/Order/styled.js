@@ -36,9 +36,11 @@ export const Product = styled.View`
 	background: white;
 	flex-direction: row;
 	height: ${setHeightValue(40)}px;
+	border-color: ${colors.secondary};
 	margin-top: ${setHeightValue(1)}px;
 	margin-bottom: ${setHeightValue(1)}px;
 	border-radius: ${setHeightValue(4)}px;
+	border-width: ${setWidthValue(0.5)}px;
 	padding: ${setHeightValue(3)}px ${setWidthValue(3)}px;
 `;
 export const ProductImage = styled.Image`

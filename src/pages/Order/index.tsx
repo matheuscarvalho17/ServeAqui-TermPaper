@@ -59,9 +59,9 @@ const Order: React.FC = () => {
 											{formatValues(item.price)}
 										</ProductSinglePrice>
 										<TotalContainer>
-											<ProductQuantity>{`${item.amount}x`}</ProductQuantity>
+											<ProductQuantity>{`${item.amountCart}x`}</ProductQuantity>
 											<ProductPrice>
-												{formatValues(item.price * item.amount)}
+												{formatValues(item.price * item.amountCart)}
 											</ProductPrice>
 										</TotalContainer>
 										{item.editable && (

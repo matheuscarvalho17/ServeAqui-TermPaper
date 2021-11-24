@@ -43,7 +43,7 @@ const Cart: React.FC = () => {
 	}, [products]);
 	const cartTotal = useMemo(() => {
 		const cartAmount = products.reduce((accumulator, product) => {
-			const totalPrice = accumulator + product.price * product.amount;
+			const totalPrice = accumulator + product.price * product.amountCart;
 			return totalPrice;
 		}, 0);
 		return formatValues(cartAmount);
@@ -54,10 +54,14 @@ const Cart: React.FC = () => {
 		dispatch(CartActions.removeFromCart(id));
 	}
 	function increment(product: Data) {
-		dispatch(CartActions.updateAmountRequest(product.id, product.amount + 1));
+		dispatch(
+			CartActions.updateAmountRequest(product.id, product.amountCart + 1),
+		);
 	}
 	function decrement(product: Data) {
-		dispatch(CartActions.updateAmountRequest(product.id, product.amount - 1));
+		dispatch(
+			CartActions.updateAmountRequest(product.id, product.amountCart - 1),
+		);
 	}
 
 	return (
@@ -90,9 +94,9 @@ const Cart: React.FC = () => {
 										{formatValues(item.price)}
 									</ProductSinglePrice>
 									<TotalContainer>
-										<ProductQuantity>{`${item.amount}x`}</ProductQuantity>
+										<ProductQuantity>{`${item.amountCart}x`}</ProductQuantity>
 										<ProductPrice>
-											{formatValues(item.price * item.amount)}
+											{formatValues(item.price * item.amountCart)}
 										</ProductPrice>
 									</TotalContainer>
 								</ProductPriceContainer>
@@ -106,7 +110,9 @@ const Cart: React.FC = () => {
 								</ActionButton>
 								<ActionButton
 									onPress={() =>
-										item.amount > 1 ? decrement(item) : removeFromCart(item.id)
+										item.amountCart > 1
+											? decrement(item)
+											: removeFromCart(item.id)
 									}>
 									<FeatherIcon
 										name="minus"

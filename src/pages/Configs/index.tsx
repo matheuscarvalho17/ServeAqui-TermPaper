@@ -18,7 +18,6 @@ import {
 	BannerContainer,
 	StatusContainer,
 } from './styled';
-import axios from 'axios';
 
 interface Data {
 	id: string;
@@ -38,32 +37,15 @@ const Configs: React.FC = () => {
 		try {
 			const responseTables = await api.get('/tables');
 			setTables(responseTables.data);
-			console.log(responseTables.data);
 		} catch (err) {
 			console.log('responseTables', err);
 		}
 	}
 
-	async function chamadaApi() {
-		try {
-			const response = await api.get('/port');
-			console.log(response.data);
-		} catch (err) {
-			console.log('chamadaApi', err);
-		}
-	}
-
-	async function alterActualTable() {
-		setActualTable(tables[0].id);
-		setActualStatus(tables[0].status);
-	}
 	//All useEffects
 	useEffect(() => {
 		loadTables();
 	}, []);
-	useEffect(() => {
-		alterActualTable();
-	}, [tables]);
 
 	return (
 		<>
@@ -102,7 +84,7 @@ const Configs: React.FC = () => {
 						</ActionButton>
 					</RightContainer>
 				</Informations>
-				<ConfirmButton onPress={() => chamadaApi()}>
+				<ConfirmButton onPress={() => console.log('confirmar')}>
 					<TextButton>{'Confirmar alterações'}</TextButton>
 					<Icon name="content-save" style={styles.icon} />
 				</ConfirmButton>
@@ -112,7 +94,7 @@ const Configs: React.FC = () => {
 				visible={openModalStatus}
 				setVisible={setOpenModalStatus}
 				OkOnPress={() => {
-					setActualStatus(tables[3].status), console.log('Alterado status');
+					setActualStatus(tables[4].status), console.log('Alterado status');
 				}}
 			/>
 			<ModalOptions
@@ -120,7 +102,7 @@ const Configs: React.FC = () => {
 				visible={openModalTable}
 				setVisible={setOpenModalTable}
 				OkOnPress={() => {
-					setActualTable(tables[3].id), console.log('Alterada mesa');
+					setActualTable(tables[4].id), console.log('Alterada mesa');
 				}}
 			/>
 		</>

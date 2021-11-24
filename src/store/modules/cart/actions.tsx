@@ -5,11 +5,11 @@ export function addToCartRequest(id: number) {
 		id,
 	};
 }
-export function updateAmountRequest(id: number, amount: number) {
+export function updateAmountRequest(id: number, amountCart: number) {
 	return {
 		type: '@cart/UPDATE_AMOUNT_REQUEST',
 		id,
-		amount,
+		amountCart,
 	};
 }
 
@@ -20,11 +20,11 @@ export function addToCartSuccess(product: any) {
 		product,
 	};
 }
-export function updateAmountSuccess(id: number, amount: number) {
+export function updateAmountSuccess(id: number, amountCart: number) {
 	return {
 		type: '@cart/UPDATE_AMOUNT_SUCCESS',
 		id,
-		amount,
+		amountCart,
 	};
 }
 export function removeFromCart(id: number) {

@@ -45,8 +45,8 @@ const ProductDetails: React.FC = () => {
 	//All functions
 	async function loadProduct() {
 		try {
-			const response = await api.get(`/products?id=${idProduct}`);
-			setProduct(response.data[0]);
+			const response = await api.get(`/product?id=${idProduct}`);
+			setProduct(response.data);
 		} catch (err) {
 			console.log('product', err);
 		}
@@ -57,10 +57,14 @@ const ProductDetails: React.FC = () => {
 		dispatch(CartActions.removeFromCart(id));
 	}
 	function increment(product: Data) {
-		dispatch(CartActions.updateAmountRequest(product.id, product.amount + 1));
+		dispatch(
+			CartActions.updateAmountRequest(product.id, product.amountCart + 1),
+		);
 	}
 	function decrement(product: Data) {
-		dispatch(CartActions.updateAmountRequest(product.id, product.amount - 1));
+		dispatch(
+			CartActions.updateAmountRequest(product.id, product.amountCart - 1),
+		);
 	}
 
 	//All useEffects
@@ -97,13 +101,13 @@ const ProductDetails: React.FC = () => {
 									<ActionContainer>
 										<ActionButton
 											onPress={() =>
-												item.amount > 1
+												item.amountCart > 1
 													? decrement(item)
 													: removeFromCart(item.id)
 											}>
 											<FeatherIcon name="minus" style={styles.icon} />
 										</ActionButton>
-										<TextButton>{item.amount}</TextButton>
+										<TextButton>{item.amountCart}</TextButton>
 										<ActionButton
 											onPress={() => {
 												increment(item);
