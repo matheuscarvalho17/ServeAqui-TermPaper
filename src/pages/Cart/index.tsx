@@ -49,33 +49,39 @@ const Cart: React.FC = () => {
 		return formatValues(cartAmount);
 	}, [products]);
 
-	//All functions
 	function removeFromCart(id: number) {
 		dispatch(CartActions.removeFromCart(id));
 	}
-	function increment(product: Data) {
+	function incrementCart(product: Data) {
 		dispatch(
 			CartActions.updateAmountRequest(product.id, product.amountCart + 1),
 		);
 	}
-	function decrement(product: Data) {
+	function decrementCart(product: Data) {
 		dispatch(
 			CartActions.updateAmountRequest(product.id, product.amountCart - 1),
 		);
+	}
+	// function incrementOrder(product: Data) {
+	// 	dispatch(OrdersActions.addOrderRequest(product.id, product.amountCart));
+	// }
+
+	function clearProducts() {
+		for (let index = 0; index < products.length; index++) {
+			removeFromCart(products[index].id);
+		}
 	}
 
 	return (
 		<Container>
 			{/* Cart */}
 			<ProductContainer>
-				{cartSize > 0 ? (
+				{cartSize > 0 && (
 					<CleanContainer>
-						<CleanButton onPress={() => console.log('Limpar carrinho')}>
+						<CleanButton onPress={() => clearProducts()}>
 							<CleanText>{'Limpar carrinho'}</CleanText>
 						</CleanButton>
 					</CleanContainer>
-				) : (
-					<></>
 				)}
 				<ProductList
 					data={products}
