@@ -7,6 +7,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {setFontSizeValue} from '../../util/ajustScreen';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import * as CartActions from '../../store/modules/cart/actions';
+import * as OrdersActions from '../../store/modules/orders/actions';
 import {
 	Product,
 	CleanText,
@@ -110,14 +111,14 @@ const Cart: React.FC = () => {
 							<ActionContainer>
 								<ActionButton
 									onPress={() => {
-										increment(item);
+										incrementCart(item);
 									}}>
 									<FeatherIcon name="plus" color={colors.secondary} size={16} />
 								</ActionButton>
 								<ActionButton
 									onPress={() =>
 										item.amountCart > 1
-											? decrement(item)
+											? decrementCart(item)
 											: removeFromCart(item.id)
 									}>
 									<FeatherIcon
@@ -142,12 +143,14 @@ const Cart: React.FC = () => {
 					{cartSize} {cartSize == 1 ? 'item' : 'itens'}
 				</TotalProductsText>
 				<SubTotalValue>{cartTotal}</SubTotalValue>
-				{cartSize > 0 ? (
-					<FinishButton onPress={() => console.log('Realizar pedido')}>
+				{cartSize > 0 && (
+					<FinishButton
+						onPress={() => {
+							console.log('Realizar pedido');
+							// incrementOrder(item)
+						}}>
 						<FinishButtonText>{'Realizar pedido'}</FinishButtonText>
 					</FinishButton>
-				) : (
-					<></>
 				)}
 			</TotalProductsContainer>
 		</Container>
