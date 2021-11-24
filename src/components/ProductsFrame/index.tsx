@@ -62,19 +62,21 @@ const ProductsFrame: React.FC<IProductsFrame> = ({
 				ListFooterComponentStyle={{
 					height: 80,
 				}}
-				renderItem={({item}: {item: Data}) => (
-					<Product
-						onPress={() => {
-							navigation.navigate('ProductDetails', {idProduct: item.id});
-						}}>
-						<ProductImage source={{uri: item.image_url}} />
-						<ProductButton onPress={() => handlerAddToCart(item.id)}>
-							<FeatherIcon name="plus-circle" style={styles.icon} />
-						</ProductButton>
-						<ProductPrice>{formatValues(item.price)}</ProductPrice>
-						<ProductTitle>{item.title}</ProductTitle>
-					</Product>
-				)}
+				renderItem={({item}: {item: Data}) =>
+					item.amount > 0 && (
+						<Product
+							onPress={() => {
+								navigation.navigate('ProductDetails', {idProduct: item.id});
+							}}>
+							<ProductImage source={{uri: item.image_url}} />
+							<ProductButton onPress={() => handlerAddToCart(item.id)}>
+								<FeatherIcon name="plus-circle" style={styles.icon} />
+							</ProductButton>
+							<ProductPrice>{formatValues(item.price)}</ProductPrice>
+							<ProductTitle>{item.title}</ProductTitle>
+						</Product>
+					)
+				}
 			/>
 		</ProductContainer>
 	);

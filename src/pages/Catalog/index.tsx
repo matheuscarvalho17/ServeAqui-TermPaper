@@ -1,6 +1,6 @@
 import api from '../../services/api';
+import {useSelector} from 'react-redux';
 import LottieView from 'lottie-react-native';
-import React, {useState, useEffect} from 'react';
 import ModalIcon from '../../components/ModalIcon';
 import CloseOrder from '../../components/CloseOrder';
 import CallWaiter from '../../components/CallWaiter';
@@ -8,6 +8,7 @@ import BannerFrame from '../../components/BannerFrame';
 import {useNavigation} from '@react-navigation/native';
 import FloatingCart from '../../components/FloatingCart';
 import MessageFrame from '../../components/MessageFrame';
+import React, {useState, useEffect, useMemo} from 'react';
 import {Container, ScrollContainer, styles} from './styled';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import EmptyFrame from '../../customs/animations/EmptyFrame.json';
@@ -21,8 +22,13 @@ const Catalog: React.FC = () => {
 	const [prodIceds, setProdIceds] = useState<Array<Data>>([]);
 	const [prodMeals, setProdMeals] = useState<Array<Data>>([]);
 	const [prodDrinks, setProdDrinks] = useState<Array<Data>>([]);
+	const order = useSelector(({orders}: {orders: any}) => orders);
 
 	//All functions
+	const orderSize = useMemo(() => {
+		return order.length || 0;
+	}, [order]);
+
 	async function loadProducts() {
 		try {
 			const responseProducts = await api.get('/products');
@@ -53,7 +59,7 @@ const Catalog: React.FC = () => {
 	//All useEffects
 	useEffect(() => {
 		loadProducts();
-	}, []);
+	}, [orderSize]);
 
 	return (
 		<>

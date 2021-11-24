@@ -33,7 +33,7 @@ const Order: React.FC = () => {
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [openEvaluate, setOpenEvaluate] = useState<boolean>(false);
 	const products = useSelector(({orders}: {orders: any}) => orders);
-	const observation: string = 'Não colocar muito sal.';
+	const observation: string = 'Observação...';
 
 	//All Functions
 	const orderSize = useMemo(() => {
