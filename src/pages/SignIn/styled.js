@@ -67,6 +67,12 @@ export const TextButton = styled.Text`
 	font-size: ${setFontSizeValue(4.5)}px;
 	letter-spacing: ${setWidthValue(0.2)}px;
 `;
+export const TextWarm = styled.Text`
+	font-weight: bold;
+	color: ${colors.notAvaliable};
+	font-size: ${setFontSizeValue(4.5)}px;
+	letter-spacing: ${setWidthValue(0.2)}px;
+`;
 
 export const styles = StyleSheet.create({
 	bannerIcon: {
