@@ -93,15 +93,16 @@ const Cart: React.FC = () => {
 							console.log('/product/update ' + err);
 						}
 						try {
+							const data = {
+								idOrder: 1,
+								idProduct: products[index].id,
+								amount: products[index].amountCart,
+							};
+							await api.post(`/comercial/request/create`, data);
+							incrementOrder(products[index]);
 						} catch (err) {
-							console.log('' + err);
+							console.log('comercial/request/create ' + err);
 						}
-						//
-						//
-						//
-						// incrementOrder(products[index]);
-						//
-						//
 						console.log(
 							'Pedido ' +
 								products[index].amountCart +
@@ -133,7 +134,6 @@ const Cart: React.FC = () => {
 	return (
 		<>
 			<Container>
-				{/* Cart */}
 				<ProductContainer>
 					{cartSize > 0 && (
 						<CleanContainer>
@@ -194,7 +194,6 @@ const Cart: React.FC = () => {
 						)}
 					/>
 				</ProductContainer>
-				{/* Information Cart */}
 				<TotalProductsContainer>
 					<FeatherIcon
 						name={'shopping-cart'}
