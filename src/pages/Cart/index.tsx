@@ -188,7 +188,8 @@ const Cart: React.FC = () => {
 				)}
 			</TotalProductsContainer>
 			<Snackbar
-				visible={snackVisible}
+				// visible={snackVisible}
+				visible={true}
 				onDismiss={() => setSnackVisible(false)}
 				action={{
 					label: 'Ok',
