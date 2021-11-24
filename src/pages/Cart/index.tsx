@@ -63,9 +63,9 @@ const Cart: React.FC = () => {
 			CartActions.updateAmountRequest(product.id, product.amountCart - 1),
 		);
 	}
-	// function incrementOrder(product: Data) {
-	// 	dispatch(OrdersActions.addOrderRequest(product.id, product.amountCart));
-	// }
+	function incrementOrder(product: Data) {
+		dispatch(OrdersActions.addOrderRequest(product.id, product.amountCart));
+	}
 
 	function clearProducts() {
 		for (let index = 0; index < products.length; index++) {
@@ -111,6 +111,7 @@ const Cart: React.FC = () => {
 							<ActionContainer>
 								<ActionButton
 									onPress={() => {
+										incrementOrder(item);
 										incrementCart(item);
 									}}>
 									<FeatherIcon name="plus" color={colors.secondary} size={16} />

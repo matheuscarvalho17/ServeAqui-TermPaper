@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
-import EmptyCart from '../../components/EmptyCart';
+import {useSelector} from 'react-redux';
+import React, {useMemo, useState} from 'react';
+import ModalIcon from '../../components/ModalIcon';
 import formatValues from '../../util/formatValues';
 import {Data} from '../../components/ProductsFrame';
+import EmptyOrder from '../../components/EmptyOrder';
 import Octicons from 'react-native-vector-icons/Octicons';
+import EvaluateService from '../../components/EvaluateService';
 import {
 	styles,
 	Product,
@@ -24,28 +27,32 @@ import {
 	ProductTitleContainer,
 	TotalProductsContainer,
 } from './styled';
-import {useSelector} from 'react-redux';
-import ModalIcon from '../../components/ModalIcon';
-import EvaluateService from '../../components/EvaluateService';
 
 const Order: React.FC = () => {
 	//All constants declarations
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [openEvaluate, setOpenEvaluate] = useState<boolean>(false);
-	const products = useSelector(({cart}: {cart: any}) => cart);
+	const products = useSelector(({orders}: {orders: any}) => orders);
 	const observation: string = 'Não colocar muito sal.';
+
+	//All Functions
+	const orderSize = useMemo(() => {
+		return products.length || 0;
+	}, [products]);
 
 	return (
 		<>
 			<Container>
 				<ProductContainer>
-					<OrderContainer>
-						<OrderTitle>{'Pedido #0001'}</OrderTitle>
-					</OrderContainer>
+					{orderSize > 0 && (
+						<OrderContainer>
+							<OrderTitle>{'Pedido #0001'}</OrderTitle>
+						</OrderContainer>
+					)}
 					<ProductList
 						data={products}
 						keyExtractor={(item: Data) => String(item.id)}
-						// ListEmptyComponent={<EmptyCart />}
+						ListEmptyComponent={<EmptyOrder />}
 						ListFooterComponentStyle={{
 							height: 80,
 						}}
@@ -72,11 +79,13 @@ const Order: React.FC = () => {
 							</Product>
 						)}
 					/>
-					<TotalProductsContainer>
-						<FinishButton onPress={() => setOpenModal(true)}>
-							<FinishButtonText>{'Encerrar conta'}</FinishButtonText>
-						</FinishButton>
-					</TotalProductsContainer>
+					{orderSize > 0 && (
+						<TotalProductsContainer>
+							<FinishButton onPress={() => setOpenModal(true)}>
+								<FinishButtonText>{'Encerrar conta'}</FinishButtonText>
+							</FinishButton>
+						</TotalProductsContainer>
+					)}
 				</ProductContainer>
 			</Container>
 			<ModalIcon

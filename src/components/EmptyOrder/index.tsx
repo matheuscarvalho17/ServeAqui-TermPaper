@@ -1,17 +1,17 @@
 import React from 'react';
 import LottieView from 'lottie-react-native';
-import {Container, CartContainer, Text} from './styled';
+import {Container, OrderContainer, Text} from './styled';
 import EmptyCart from '../../customs/animations/EmptyCart.json';
 
-const EmpytCart: React.FC = () => {
+const EmptyOrder: React.FC = () => {
 	return (
 		<Container>
-			<CartContainer>
+			<OrderContainer>
 				<LottieView source={EmptyCart} resizeMode="contain" autoPlay />
-			</CartContainer>
-			<Text>{'Seu carrinho tá sem nada!\nCompra algo ai!'}</Text>
+			</OrderContainer>
+			<Text>{'Tem muito espaço sobrando aqui!\nPede algo ai!'}</Text>
 		</Container>
 	);
 };
 
-export default EmpytCart;
+export default EmptyOrder;
