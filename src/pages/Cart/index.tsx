@@ -1,5 +1,7 @@
-import React, {useMemo} from 'react';
+import api from '../../services/api';
 import colors from '../../customs/colors';
+import {Snackbar} from 'react-native-paper';
+import React, {useMemo, useState} from 'react';
 import EmptyCart from '../../components/EmptyCart';
 import formatValues from '../../util/formatValues';
 import {Data} from '../../components/ProductsFrame';
@@ -36,7 +38,9 @@ import {
 const Cart: React.FC = () => {
 	//All constants declarations
 	const dispatch = useDispatch();
+	const [snackText, setSnackText] = useState<string>('');
 	const products = useSelector(({cart}: {cart: any}) => cart);
+	const [snackVisible, setSnackVisible] = useState<boolean>(false);
 
 	//All Functions
 	const cartSize = useMemo(() => {
@@ -70,6 +74,37 @@ const Cart: React.FC = () => {
 	function clearProducts() {
 		for (let index = 0; index < products.length; index++) {
 			removeFromCart(products[index].id);
+		}
+	}
+
+	async function addToOrder() {
+		for (let index = 0; index < products.length; index++) {
+			const response = await api.get(`/product?id=${products[index].id}`);
+			if (response.data.amount != 0) {
+				if (products[index].amountCart <= response.data.amount) {
+					//
+					console.log(
+						'Pedido ' +
+							products[index].amountCart +
+							' unidades de ' +
+							products[index].title,
+					);
+				} else {
+					setSnackVisible(true);
+					setSnackText(
+						'O produto ' +
+							products[index].title +
+							' possui apenas ' +
+							response.data.amount +
+							' itens disponíveis.',
+					);
+				}
+			} else {
+				setSnackVisible(true);
+				setSnackText(
+					'O produto ' + products[index].title + ' não está mais disponível.',
+				);
+			}
 		}
 	}
 
@@ -111,7 +146,6 @@ const Cart: React.FC = () => {
 							<ActionContainer>
 								<ActionButton
 									onPress={() => {
-										incrementOrder(item);
 										incrementCart(item);
 									}}>
 									<FeatherIcon name="plus" color={colors.secondary} size={16} />
@@ -147,13 +181,20 @@ const Cart: React.FC = () => {
 				{cartSize > 0 && (
 					<FinishButton
 						onPress={() => {
-							console.log('Realizar pedido');
-							// incrementOrder(item)
+							addToOrder();
 						}}>
 						<FinishButtonText>{'Realizar pedido'}</FinishButtonText>
 					</FinishButton>
 				)}
 			</TotalProductsContainer>
+			<Snackbar
+				visible={snackVisible}
+				onDismiss={() => setSnackVisible(false)}
+				action={{
+					label: 'Ok',
+				}}>
+				{snackText}
+			</Snackbar>
 		</Container>
 	);
 };
