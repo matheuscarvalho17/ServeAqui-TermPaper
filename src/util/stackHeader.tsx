@@ -2,12 +2,21 @@ import colors from '../customs/colors';
 import React, {useState} from 'react';
 import {Appbar} from 'react-native-paper';
 import {StyleSheet, TextInput} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {setFontSizeValue, setWidthValue, setHeightValue} from './ajustScreen';
 
 const StackHeader = ({scene, navigation}) => {
 	const {options} = scene.descriptor;
 	const title = options.headerTitle;
 	const [text, setText] = useState<string>('');
+
+	async function storeData(value) {
+		try {
+			await AsyncStorage.setItem('@person_product', value);
+		} catch (err) {
+			console.log('storeData', err);
+		}
+	}
 
 	return (
 		<Appbar.Header style={styles.header}>
@@ -25,13 +34,16 @@ const StackHeader = ({scene, navigation}) => {
 						value={text}
 						style={styles.textInput}
 						onChangeText={text => setText(text)}
+						onBlur={() => {
+							storeData(text);
+						}}
 					/>
 					<Appbar.Action
 						icon="magnify"
 						color={colors.text_light}
 						size={setFontSizeValue(6)}
 						onPress={() => {
-							// setSearch(true);
+							storeData(text);
 						}}
 					/>
 					<Appbar.Action

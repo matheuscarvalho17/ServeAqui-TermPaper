@@ -13,21 +13,58 @@ import {Container, ScrollContainer, styles} from './styled';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import EmptyFrame from '../../customs/animations/EmptyFrame.json';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Catalog: React.FC = () => {
 	//All constants declarations
 	const navigation = useNavigation();
+	const [visible, setVisible] = useState<boolean>(true);
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [products, setProducts] = useState<Array<Data>>([]);
 	const [prodIceds, setProdIceds] = useState<Array<Data>>([]);
 	const [prodMeals, setProdMeals] = useState<Array<Data>>([]);
 	const [prodDrinks, setProdDrinks] = useState<Array<Data>>([]);
+	const [personProduct, setPersonProduct] = useState<string>('');
 	const order = useSelector(({orders}: {orders: any}) => orders);
 
 	//All functions
 	const orderSize = useMemo(() => {
 		return order.length || 0;
 	}, [order]);
+
+	async function cleanAsyncStore(value) {
+		try {
+			await AsyncStorage.setItem('@person_product', value);
+			console.log('cleanAsyncStore');
+		} catch (err) {
+			console.log('storeData', err);
+		}
+	}
+
+	async function getPersonProduct() {
+		try {
+			const value = await AsyncStorage.getItem('@person_product');
+			if (value !== null) {
+				setPersonProduct(value);
+				console.log('getPersonProduct ', value);
+			}
+		} catch (err) {
+			console.log('getPersonProduct', err);
+		}
+	}
+
+	async function loadPersonProducts(name) {
+		if (name != '') {
+			try {
+				const response = await api.get(`/products/name?title=${name}`);
+				setProducts(response.data);
+				setVisible(false);
+				console.log('loadPersonProducts');
+			} catch (err) {
+				console.log('loadPersonProducts', err);
+			}
+		}
+	}
 
 	async function loadProducts() {
 		try {
@@ -54,12 +91,21 @@ const Catalog: React.FC = () => {
 		} catch (err) {
 			console.log('responseIceds', err);
 		}
+		console.log('loadProducts');
 	}
 
 	//All useEffects
 	useEffect(() => {
 		loadProducts();
+		cleanAsyncStore('');
 	}, [orderSize]);
+
+	useEffect(() => {
+		if (personProduct != '') {
+			loadPersonProducts(personProduct);
+			getPersonProduct();
+		}
+	}, [personProduct]);
 
 	return (
 		<>
@@ -75,14 +121,27 @@ const Catalog: React.FC = () => {
 						productsList={products}
 						productsType={'Feitos para você!'}
 					/>
-					<ProductsFrame productsList={prodMeals} productsType={'Refeições'} />
-					<ProductsFrame productsList={prodDrinks} productsType={'Bebidas'} />
-					<ProductsFrame productsList={prodIceds} productsType={'Gelados'} />
+					{visible && (
+						<>
+							<ProductsFrame
+								productsList={prodMeals}
+								productsType={'Refeições'}
+							/>
+							<ProductsFrame
+								productsList={prodDrinks}
+								productsType={'Bebidas'}
+							/>
+							<ProductsFrame
+								productsList={prodIceds}
+								productsType={'Gelados'}
+							/>
+						</>
+					)}
 					<MessageFrame
 						animation={
 							<LottieView source={EmptyFrame} resizeMode="contain" autoPlay />
 						}
-						message={'Parece que já te mostramos todas as comidinhas...'}
+						message={'Parece que já te mostramos tudo as disponível...'}
 					/>
 				</ScrollContainer>
 				<CallWaiter
