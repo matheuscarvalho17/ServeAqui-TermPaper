@@ -1,5 +1,6 @@
 import api from '../../services/api';
 import React, {useEffect, useState} from 'react';
+import {useAppContext} from '../../util/context';
 import BannerFrame from '../../components/BannerFrame';
 import ModalOptions from '../../components/ModalOptions';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -26,6 +27,7 @@ interface Data {
 
 const Configs: React.FC = () => {
 	//All constants declarations
+	const {_logout} = useAppContext();
 	const [tables, setTables] = useState<Array<Data>>([]);
 	const [actualTable, setActualTable] = useState<String>('');
 	const [actualStatus, setActualStatus] = useState<String>('');
@@ -84,7 +86,10 @@ const Configs: React.FC = () => {
 						</ActionButton>
 					</RightContainer>
 				</Informations>
-				<ConfirmButton onPress={() => console.log('confirmar')}>
+				<ConfirmButton
+					onPress={() => {
+						_logout();
+					}}>
 					<TextButton>{'Confirmar alterações'}</TextButton>
 					<Icon name="content-save" style={styles.icon} />
 				</ConfirmButton>

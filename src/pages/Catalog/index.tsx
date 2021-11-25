@@ -32,39 +32,30 @@ const Catalog: React.FC = () => {
 		return order.length || 0;
 	}, [order]);
 
-	async function cleanAsyncStore(value) {
-		try {
-			await AsyncStorage.setItem('@person_product', value);
-			console.log('cleanAsyncStore');
-		} catch (err) {
-			console.log('storeData', err);
-		}
-	}
+	// async function getPersonProduct() {
+	// 	try {
+	// 		const value = await AsyncStorage.getItem('@person_product');
+	// 		if (value !== null) {
+	// 			setPersonProduct(value);
+	// 			console.log('getPersonProduct ', value);
+	// 		}
+	// 	} catch (err) {
+	// 		console.log('getPersonProduct', err);
+	// 	}
+	// }
 
-	async function getPersonProduct() {
-		try {
-			const value = await AsyncStorage.getItem('@person_product');
-			if (value !== null) {
-				setPersonProduct(value);
-				console.log('getPersonProduct ', value);
-			}
-		} catch (err) {
-			console.log('getPersonProduct', err);
-		}
-	}
-
-	async function loadPersonProducts(name) {
-		if (name != '') {
-			try {
-				const response = await api.get(`/products/name?title=${name}`);
-				setProducts(response.data);
-				setVisible(false);
-				console.log('loadPersonProducts');
-			} catch (err) {
-				console.log('loadPersonProducts', err);
-			}
-		}
-	}
+	// async function loadPersonProducts(name) {
+	// 	if (name != '') {
+	// 		try {
+	// 			const response = await api.get(`/products/name?title=${name}`);
+	// 			setProducts(response.data);
+	// 			setVisible(false);
+	// 			console.log('loadPersonProducts');
+	// 		} catch (err) {
+	// 			console.log('loadPersonProducts', err);
+	// 		}
+	// 	}
+	// }
 
 	async function loadProducts() {
 		try {
@@ -91,21 +82,19 @@ const Catalog: React.FC = () => {
 		} catch (err) {
 			console.log('responseIceds', err);
 		}
-		console.log('loadProducts');
 	}
 
 	//All useEffects
 	useEffect(() => {
 		loadProducts();
-		cleanAsyncStore('');
 	}, [orderSize]);
 
-	useEffect(() => {
-		if (personProduct != '') {
-			loadPersonProducts(personProduct);
-			getPersonProduct();
-		}
-	}, [personProduct]);
+	// useEffect(() => {
+	// 	if (personProduct != '') {
+	// 		loadPersonProducts(personProduct);
+	// 		getPersonProduct();
+	// 	}
+	// }, [personProduct]);
 
 	return (
 		<>

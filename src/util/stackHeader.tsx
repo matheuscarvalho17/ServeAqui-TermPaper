@@ -1,22 +1,12 @@
+import React from 'react';
 import colors from '../customs/colors';
-import React, {useState} from 'react';
+import {StyleSheet} from 'react-native';
 import {Appbar} from 'react-native-paper';
-import {StyleSheet, TextInput} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {setFontSizeValue, setWidthValue, setHeightValue} from './ajustScreen';
+import {setFontSizeValue, setHeightValue} from './ajustScreen';
 
 const StackHeader = ({scene, navigation}) => {
 	const {options} = scene.descriptor;
 	const title = options.headerTitle;
-	const [text, setText] = useState<string>('');
-
-	async function storeData(value) {
-		try {
-			await AsyncStorage.setItem('@person_product', value);
-		} catch (err) {
-			console.log('storeData', err);
-		}
-	}
 
 	return (
 		<Appbar.Header style={styles.header}>
@@ -29,31 +19,13 @@ const StackHeader = ({scene, navigation}) => {
 			)}
 			<Appbar.Content title={title} titleStyle={styles.title} />
 			{!navigation.canGoBack() && (
-				<>
-					<TextInput
-						value={text}
-						style={styles.textInput}
-						onChangeText={text => setText(text)}
-						onBlur={() => {
-							storeData(text);
-						}}
-					/>
-					<Appbar.Action
-						icon="magnify"
-						color={colors.text_light}
-						size={setFontSizeValue(6)}
-						onPress={() => {
-							storeData(text);
-						}}
-					/>
-					<Appbar.Action
-						onPress={() => {}}
-						icon="dots-vertical"
-						color={colors.text_light}
-						size={setFontSizeValue(6)}
-						onLongPress={() => navigation.navigate('SignIn')}
-					/>
-				</>
+				<Appbar.Action
+					onPress={() => {}}
+					icon="dots-vertical"
+					color={colors.text_light}
+					size={setFontSizeValue(6)}
+					onLongPress={() => navigation.navigate('SignIn')}
+				/>
 			)}
 		</Appbar.Header>
 	);
@@ -68,13 +40,6 @@ const styles = StyleSheet.create({
 	title: {
 		color: colors.text_light,
 		fontSize: setFontSizeValue(5),
-	},
-	textInput: {
-		width: setWidthValue(100),
-		marginRight: setWidthValue(10),
-		borderRadius: setWidthValue(1),
-		paddingHorizontal: setWidthValue(4),
-		backgroundColor: colors.background_initial,
 	},
 });
 

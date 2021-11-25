@@ -1,11 +1,12 @@
+import React from 'react';
 import App from './app.route';
 import Auth from './auth.route';
-import React, {useState} from 'react';
+import {useAppContext} from '../util/context';
 
 const Routes: React.FC = () => {
-	const [signIn, setSignIn] = useState<boolean>(true);
+	const {login} = useAppContext();
 
-	return signIn ? <App /> : <Auth />;
+	return login ? <Auth /> : <App />;
 };
 
 export default Routes;

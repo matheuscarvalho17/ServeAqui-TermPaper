@@ -1,5 +1,6 @@
 import api from '../../services/api';
 import React, {useState} from 'react';
+import {useAppContext} from '../../util/context';
 import BannerFrame from '../../components/BannerFrame';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,6 +18,7 @@ import {
 
 const SignIn: React.FC = () => {
 	const navigation = useNavigation();
+	const {_setLogin} = useAppContext();
 	const [text, setText] = useState<string>('');
 	const [warm, setWarm] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
@@ -39,7 +41,7 @@ const SignIn: React.FC = () => {
 					setWarm(response.data.warm);
 					setVisible(true);
 				} else {
-					console.log(response.data.id);
+					_setLogin(response.data.id);
 				}
 			} catch (err) {
 				console.log('sendForm', err);

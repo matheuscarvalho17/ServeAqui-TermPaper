@@ -5,13 +5,16 @@ import {Provider} from 'react-redux';
 import colors from './customs/colors';
 import 'react-native-gesture-handler';
 import {StatusBar} from 'react-native';
+import {Context} from './util/context';
 import {Provider as PaperProvider} from 'react-native-paper';
 
 const App = () => (
 	<Provider store={store}>
 		<PaperProvider>
 			<StatusBar barStyle="light-content" backgroundColor={colors.primary} />
-			<Routes />
+			<Context>
+				<Routes />
+			</Context>
 		</PaperProvider>
 	</Provider>
 );
