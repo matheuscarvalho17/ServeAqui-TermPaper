@@ -9,15 +9,24 @@ import {useNavigation} from '@react-navigation/native';
 import FloatingCart from '../../components/FloatingCart';
 import MessageFrame from '../../components/MessageFrame';
 import React, {useState, useEffect, useMemo} from 'react';
-import {Container, ScrollContainer, styles} from './styled';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import EmptyFrame from '../../customs/animations/EmptyFrame.json';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+	styles,
+	Container,
+	TextInput,
+	SearchView,
+	SearchButton,
+	ScrollContainer,
+} from './styled';
 
 const Catalog: React.FC = () => {
 	//All constants declarations
 	const navigation = useNavigation();
+	const [text, setText] = useState<string>('');
 	const [visible, setVisible] = useState<boolean>(true);
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [products, setProducts] = useState<Array<Data>>([]);
@@ -32,30 +41,20 @@ const Catalog: React.FC = () => {
 		return order.length || 0;
 	}, [order]);
 
-	// async function getPersonProduct() {
-	// 	try {
-	// 		const value = await AsyncStorage.getItem('@person_product');
-	// 		if (value !== null) {
-	// 			setPersonProduct(value);
-	// 			console.log('getPersonProduct ', value);
-	// 		}
-	// 	} catch (err) {
-	// 		console.log('getPersonProduct', err);
-	// 	}
-	// }
-
-	// async function loadPersonProducts(name) {
-	// 	if (name != '') {
-	// 		try {
-	// 			const response = await api.get(`/products/name?title=${name}`);
-	// 			setProducts(response.data);
-	// 			setVisible(false);
-	// 			console.log('loadPersonProducts');
-	// 		} catch (err) {
-	// 			console.log('loadPersonProducts', err);
-	// 		}
-	// 	}
-	// }
+	async function loadPersonProducts(product) {
+		if (product != '') {
+			try {
+				const response = await api.get(`/products/name?title=${product}`);
+				setProducts(response.data);
+				setVisible(false);
+				console.log('loadPersonProducts');
+			} catch (err) {
+				console.log('loadPersonProducts', err);
+			}
+		} else {
+			setVisible(true);
+		}
+	}
 
 	async function loadProducts() {
 		try {
@@ -106,6 +105,19 @@ const Catalog: React.FC = () => {
 							'Com dúvidas no que pedir? Chame o garçom! Ele poderá te ajudar nesta dúvida cruel.'
 						}
 					/>
+					<SearchView>
+						<TextInput
+							value={text}
+							placeholder={'Digite para pesquisar...'}
+							onChangeText={text => setText(text)}
+						/>
+						<SearchButton onPress={() => loadPersonProducts(text)}>
+							<EntypoIcon
+								name="magnifying-glass"
+								style={styles.TextInputIcon}
+							/>
+						</SearchButton>
+					</SearchView>
 					<ProductsFrame
 						productsList={products}
 						productsType={'Feitos para você!'}
