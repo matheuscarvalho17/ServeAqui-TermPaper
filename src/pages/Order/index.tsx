@@ -1,11 +1,13 @@
-import {useSelector} from 'react-redux';
 import React, {useMemo, useState} from 'react';
 import ModalIcon from '../../components/ModalIcon';
 import formatValues from '../../util/formatValues';
 import {Data} from '../../components/ProductsFrame';
 import EmptyOrder from '../../components/EmptyOrder';
+import {useDispatch, useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 import Octicons from 'react-native-vector-icons/Octicons';
 import EvaluateService from '../../components/EvaluateService';
+import * as OrdersActions from '../../store/modules/orders/actions';
 import {
 	styles,
 	Product,
@@ -30,6 +32,8 @@ import {
 
 const Order: React.FC = () => {
 	//All constants declarations
+	const dispatch = useDispatch();
+	const navigation = useNavigation();
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [openEvaluate, setOpenEvaluate] = useState<boolean>(false);
 	const products = useSelector(({orders}: {orders: any}) => orders);
@@ -39,6 +43,12 @@ const Order: React.FC = () => {
 	const orderSize = useMemo(() => {
 		return products.length || 0;
 	}, [products]);
+
+	function clearProducts() {
+		for (let index = 0; index < products.length; index++) {
+			dispatch(OrdersActions.removeFromOrder(products[index].id));
+		}
+	}
 
 	return (
 		<>
@@ -94,12 +104,16 @@ const Order: React.FC = () => {
 				}
 				visible={openModal}
 				OkCancel={true}
-				OkOnPress={() => setOpenEvaluate(true)}
 				setVisible={setOpenModal}
+				OkOnPress={() => setOpenEvaluate(true)}
 				icon={<Octicons name="list-ordered" style={styles.modalIcon} />}
 			/>
 			<EvaluateService
-				onPress={() => console.log('Avaliado')}
+				onPress={() => {
+					clearProducts();
+					navigation.navigate('Catalog');
+					console.log('Avaliado');
+				}}
 				visible={openEvaluate}
 				setVisible={setOpenEvaluate}
 			/>

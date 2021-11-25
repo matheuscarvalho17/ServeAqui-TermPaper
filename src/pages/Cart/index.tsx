@@ -74,7 +74,7 @@ const Cart: React.FC = () => {
 
 	function clearProducts() {
 		for (let index = 0; index < products.length; index++) {
-			removeFromCart(products[index].id);
+			dispatch(CartActions.removeFromCart(products[index].id));
 		}
 	}
 

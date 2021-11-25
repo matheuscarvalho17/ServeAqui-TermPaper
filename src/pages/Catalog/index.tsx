@@ -13,7 +13,6 @@ import EntypoIcon from 'react-native-vector-icons/Entypo';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import EmptyFrame from '../../customs/animations/EmptyFrame.json';
 import {ProductsFrame, Data} from '../../components/ProductsFrame';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
 	styles,
 	Container,
@@ -26,7 +25,6 @@ import {
 const Catalog: React.FC = () => {
 	//All constants declarations
 	const navigation = useNavigation();
-	const [text, setText] = useState<string>('');
 	const [visible, setVisible] = useState<boolean>(true);
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const [products, setProducts] = useState<Array<Data>>([]);
@@ -47,7 +45,6 @@ const Catalog: React.FC = () => {
 				const response = await api.get(`/products/name?title=${product}`);
 				setProducts(response.data);
 				setVisible(false);
-				console.log('loadPersonProducts');
 			} catch (err) {
 				console.log('loadPersonProducts', err);
 			}
@@ -88,13 +85,6 @@ const Catalog: React.FC = () => {
 		loadProducts();
 	}, [orderSize]);
 
-	// useEffect(() => {
-	// 	if (personProduct != '') {
-	// 		loadPersonProducts(personProduct);
-	// 		getPersonProduct();
-	// 	}
-	// }, [personProduct]);
-
 	return (
 		<>
 			<Container>
@@ -107,11 +97,11 @@ const Catalog: React.FC = () => {
 					/>
 					<SearchView>
 						<TextInput
-							value={text}
+							value={personProduct}
 							placeholder={'Digite para pesquisar...'}
-							onChangeText={text => setText(text)}
+							onChangeText={personProduct => setPersonProduct(personProduct)}
 						/>
-						<SearchButton onPress={() => loadPersonProducts(text)}>
+						<SearchButton onPress={() => loadPersonProducts(personProduct)}>
 							<EntypoIcon
 								name="magnifying-glass"
 								style={styles.TextInputIcon}

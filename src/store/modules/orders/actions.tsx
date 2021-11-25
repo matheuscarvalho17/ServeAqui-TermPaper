@@ -14,3 +14,9 @@ export function addOrderSuccess(product: any) {
 		product,
 	};
 }
+export function removeFromOrder(id: number) {
+	return {
+		type: '@order/REMOVE',
+		id,
+	};
+}
