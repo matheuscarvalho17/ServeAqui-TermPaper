@@ -49,6 +49,7 @@ const Catalog: React.FC = () => {
 				console.log('loadPersonProducts', err);
 			}
 		} else {
+			loadProducts();
 			setVisible(true);
 		}
 	}
