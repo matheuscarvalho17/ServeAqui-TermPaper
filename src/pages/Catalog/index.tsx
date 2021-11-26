@@ -138,7 +138,6 @@ const Catalog: React.FC = () => {
 					/>
 				</ScrollContainer>
 				<CallWaiter
-					idTable={1}
 					onPress={() => {
 						setOpenModal(true);
 					}}

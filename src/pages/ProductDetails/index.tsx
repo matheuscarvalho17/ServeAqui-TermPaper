@@ -123,7 +123,6 @@ const ProductDetails: React.FC = () => {
 					<EmptyFrame />
 				)}
 				<CallWaiter
-					idTable={1}
 					onPress={() => {
 						setOpenModal(true);
 					}}

@@ -1,6 +1,7 @@
 import React from 'react';
 import api from '../../services/api';
 import {Container, Button, styles} from './styled';
+import {useAppContext} from '../../util/context';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 
 interface IData {
@@ -9,13 +10,16 @@ interface IData {
 }
 
 interface ICallWaiter {
-	idTable: number;
 	onPress: Function;
 }
 
-const CallWaiter: React.FC<ICallWaiter> = ({onPress, idTable}) => {
+const CallWaiter: React.FC<ICallWaiter> = ({onPress}) => {
+	//All constants declarations
+	const {actualTable} = useAppContext();
+
+	//All Functions
 	async function callWaiter() {
-		const data: IData = {callWaiter: 1, idTable: idTable};
+		const data: IData = {callWaiter: 1, idTable: actualTable.id};
 		try {
 			await api.put('/table/callwaiter', data);
 		} catch (err) {
