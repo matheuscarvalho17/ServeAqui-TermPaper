@@ -83,6 +83,8 @@ const Catalog: React.FC = () => {
 	//All useEffects
 	useEffect(() => {
 		loadProducts();
+		setVisible(true);
+		setPersonProduct('');
 	}, [orderSize]);
 
 	return (
