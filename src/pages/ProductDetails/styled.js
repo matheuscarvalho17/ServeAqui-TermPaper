@@ -52,6 +52,7 @@ export const ProductPrice = styled.Text`
 //Buttons
 export const ButtonContainer = styled.View`
 	width: 100%;
+	align-items: center;
 	justify-content: center;
 	height: ${setHeightValue(30)}px;
 `;
@@ -77,6 +78,21 @@ export const ActionButton = styled.TouchableOpacity`
 export const TextButton = styled.Text`
 	font-weight: bold;
 	color: ${colors.text_dark};
+	font-size: ${setFontSizeValue(4.5)}px;
+	letter-spacing: ${setWidthValue(0.2)}px;
+`;
+export const AddNewButton = styled.TouchableOpacity`
+	align-items: center;
+	justify-content: center;
+	background: ${colors.primary};
+	width: ${setWidthValue(50)}px;
+	padding: ${setWidthValue(3)}px;
+	height: ${setHeightValue(15)}px;
+	border-radius: ${setHeightValue(2)}px;
+`;
+export const AddNewButtonText = styled.Text`
+	font-weight: bold;
+	color: ${colors.text_light};
 	font-size: ${setFontSizeValue(4.5)}px;
 	letter-spacing: ${setWidthValue(0.2)}px;
 `;

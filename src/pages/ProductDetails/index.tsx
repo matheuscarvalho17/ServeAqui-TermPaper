@@ -24,17 +24,19 @@ import {
 	ProductPrice,
 	ActionButton,
 	Informations,
+	AddNewButton,
 	ButtonContainer,
 	ActionContainer,
+	AddNewButtonText,
 	ProductDescription,
 } from './styled';
 
 const ProductDetails: React.FC = () => {
 	//All constants declarations
+	const dispatch = useDispatch();
 	const navigation = useNavigation();
 	const route: RouteProp<{params: {idProduct: number}}, 'params'> = useRoute();
 	const {idProduct} = route.params;
-	const dispatch = useDispatch();
 	const [product, setProduct] = useState<Data>();
 	const [openModal, setOpenModal] = useState<boolean>(false);
 	const products = useSelector(({cart}: {cart: any}) => cart);
@@ -50,6 +52,9 @@ const ProductDetails: React.FC = () => {
 	}
 
 	//All functions
+	function handlerAddToCart(id: number) {
+		dispatch(CartActions.addToCartRequest(id));
+	}
 	function removeFromCart(id: number) {
 		dispatch(CartActions.removeFromCart(id));
 	}
@@ -87,27 +92,41 @@ const ProductDetails: React.FC = () => {
 								label2={'Sim'}
 							/>
 						)}
-						{products.map((item, index) => (
-							<ButtonContainer key={index}>
-								<ActionContainer>
-									<ActionButton
-										onPress={() =>
-											item.amountCart > 1
-												? decrement(item)
-												: removeFromCart(item.id)
-										}>
-										<FeatherIcon name="minus" style={styles.icon} />
-									</ActionButton>
-									<TextButton>{item.amountCart}</TextButton>
-									<ActionButton
-										onPress={() => {
-											increment(item);
-										}}>
-										<FeatherIcon name="plus" style={styles.icon} />
-									</ActionButton>
-								</ActionContainer>
+						{products.filter(products => products.id == idProduct).length >
+						0 ? (
+							products
+								.filter(products => products.id == idProduct)
+								.map((item, index) => (
+									<ButtonContainer key={index}>
+										<ActionContainer>
+											<ActionButton
+												onPress={() =>
+													item.amountCart > 1
+														? decrement(item)
+														: removeFromCart(item.id)
+												}>
+												<FeatherIcon name="minus" style={styles.icon} />
+											</ActionButton>
+											<TextButton>{item.amountCart}</TextButton>
+											<ActionButton
+												onPress={() => {
+													increment(item);
+												}}>
+												<FeatherIcon name="plus" style={styles.icon} />
+											</ActionButton>
+										</ActionContainer>
+									</ButtonContainer>
+								))
+						) : (
+							<ButtonContainer>
+								<AddNewButton
+									onPress={() => {
+										handlerAddToCart(idProduct);
+									}}>
+									<AddNewButtonText>{'ADICIONAR'}</AddNewButtonText>
+								</AddNewButton>
 							</ButtonContainer>
-						))}
+						)}
 					</>
 				) : (
 					<EmptyFrame />
