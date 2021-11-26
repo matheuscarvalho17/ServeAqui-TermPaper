@@ -96,5 +96,5 @@ export const styles = StyleSheet.create({
 		color: colors.text_light,
 		marginLeft: setWidthValue(3),
 		fontSize: setFontSizeValue(5.5),
-	}
+	},
 });
