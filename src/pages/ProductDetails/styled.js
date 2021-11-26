@@ -80,9 +80,7 @@ export const TextButton = styled.Text`
 	font-size: ${setFontSizeValue(4.5)}px;
 	letter-spacing: ${setWidthValue(0.2)}px;
 `;
-export const ProductList = styled(FlatList)`
-	flex: 1;
-`;
+
 export const styles = StyleSheet.create({
 	icon: {
 		color: colors.text_light,

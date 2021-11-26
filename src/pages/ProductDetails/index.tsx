@@ -1,5 +1,5 @@
 import api from '../../services/api';
-import colors from '../../customs/colors';
+import React, {useEffect, useState} from 'react';
 import {useRoute} from '@react-navigation/native';
 import formatValues from '../../util/formatValues';
 import {RouteProp} from '@react-navigation/native';
@@ -11,9 +11,7 @@ import CallWaiter from '../../components/CallWaiter';
 import CloseOrder from '../../components/CloseOrder';
 import {useNavigation} from '@react-navigation/native';
 import CustomFrame from '../../components/CustomFrame';
-import {setFontSizeValue} from '../../util/ajustScreen';
 import FloatingCart from '../../components/FloatingCart';
-import React, {useEffect, useState, useMemo} from 'react';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import FontistoIcon from 'react-native-vector-icons/Fontisto';
 import * as CartActions from '../../store/modules/cart/actions';
@@ -29,7 +27,6 @@ import {
 	ButtonContainer,
 	ActionContainer,
 	ProductDescription,
-	ProductList,
 } from './styled';
 
 const ProductDetails: React.FC = () => {
@@ -85,39 +82,32 @@ const ProductDetails: React.FC = () => {
 						</Informations>
 						{product.editable && (
 							<CustomFrame
-								title={'Gostaria de tomates?'}
-								label1={'Sim'}
-								label2={'Não'}
+								title={'Gostaria de personalizar seu pedido?'}
+								label1={'Não'}
+								label2={'Sim'}
 							/>
 						)}
-						<ProductList
-							data={products}
-							keyExtractor={(item: Data) => String(item.id)}
-							ListFooterComponentStyle={{
-								height: 80,
-							}}
-							renderItem={({item}: {item: Data}) => (
-								<ButtonContainer>
-									<ActionContainer>
-										<ActionButton
-											onPress={() =>
-												item.amountCart > 1
-													? decrement(item)
-													: removeFromCart(item.id)
-											}>
-											<FeatherIcon name="minus" style={styles.icon} />
-										</ActionButton>
-										<TextButton>{item.amountCart}</TextButton>
-										<ActionButton
-											onPress={() => {
-												increment(item);
-											}}>
-											<FeatherIcon name="plus" style={styles.icon} />
-										</ActionButton>
-									</ActionContainer>
-								</ButtonContainer>
-							)}
-						/>
+						{products.map((item, index) => (
+							<ButtonContainer key={index}>
+								<ActionContainer>
+									<ActionButton
+										onPress={() =>
+											item.amountCart > 1
+												? decrement(item)
+												: removeFromCart(item.id)
+										}>
+										<FeatherIcon name="minus" style={styles.icon} />
+									</ActionButton>
+									<TextButton>{item.amountCart}</TextButton>
+									<ActionButton
+										onPress={() => {
+											increment(item);
+										}}>
+										<FeatherIcon name="plus" style={styles.icon} />
+									</ActionButton>
+								</ActionContainer>
+							</ButtonContainer>
+						))}
 					</>
 				) : (
 					<EmptyFrame />
