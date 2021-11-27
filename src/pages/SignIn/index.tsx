@@ -28,7 +28,7 @@ const SignIn: React.FC = () => {
 	async function sendForm(credential: string, password: string) {
 		setVisible(false);
 		if (credential == '' || password == '') {
-			setWarm('Forneca todos os dados necessários');
+			setWarm('Forneça todos os dados necessários');
 			setVisible(true);
 		} else {
 			try {
